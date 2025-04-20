@@ -2953,93 +2953,141 @@
                 </div>
               </div>
             </div>
-            <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
-              <!-- Navigation -->
-              <div style="border-bottom: 1px solid #eee; margin-bottom: 30px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;">
-                  <ul style="list-style: none; padding: 0; display: inline-flex; margin: 0;">
-                      <li style="margin-right: 20px; padding-bottom: 10px; cursor: pointer;" onclick="filterProjects('branding')" id="branding-tab">
-                          <span style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Branding</span>
-                      </li>
-                      <li style="margin-right: 20px; padding-bottom: 10px; cursor: pointer;" onclick="filterProjects('web')" id="web-tab">
-                          <span style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Video Productions</span>
-                      </li>
-                      <li style="margin-right: 20px; padding-bottom: 10px; cursor: pointer;" onclick="filterProjects('applications')" id="applications-tab">
-                          <span style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Creatives</span>
-                      </li>
-                      <li style="margin-right: 20px; padding-bottom: 10px; cursor: pointer;" onclick="filterProjects('banner')" id="banner-tab">
-                          <span style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Leads Results</span>
-                      </li>
-                  </ul>
-              </div>
-              
-              <!-- Leads Results Header (Hidden by default) -->
-              <div id="leads-header" style="display: none; text-align: center; margin-bottom: 40px; animation: fadeIn 0.5s ease;">
-                  <h2 style="font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 15px; color: #333;">From Clicks to Clients</h2>
-                  <p style="font-size: clamp(0.9rem, 2vw, 1.1rem); color: #666; max-width: 700px; margin: 0 auto;">See how our strategies convert visitors into valuable customers for your business.</p>
-              </div>
-              
-              <!-- Projects Grid -->
-              <div id="projects-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
-                  <!-- Branding Projects -->
-                  <div class="project branding" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                      <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Sparkle Branding" style="width: 100%; height: auto; display: block;">
-                  </div>
-                  <div class="project branding" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                      <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15.jpeg" alt="Prana Branding" style="width: 100%; height: auto; display: block;">
-                  </div>
-                  <div class="project branding" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                      <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (3).jpeg" alt="Health Branding" style="width: 100%; height: auto; display: block;">
-                  </div>
-                  
-                  <!-- Video Productions Projects -->
-                  <div class="project web" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none;">
-                      <video controls style="width: 100%; height: auto; display: block;"                       
-                      autoplay 
-                      muted 
-                      loop 
-                      playsinline >
-                          <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745140573/Arathy_-_Review_Testimonial_umxn5a.mp4" type="video/mp4">
-                          Your browser does not support the video tag.
-                      </video>
-                  </div>
-                  <div class="project web" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none;">
-                      <video controls style="width: 100%; height: auto; display: block;">
-                          <source src="../wp-content/uploads/sites/59/2024/09/sample-video-2.mp4" type="video/mp4">
-                          Your browser does not support the video tag.
-                      </video>
-                  </div>
-                  <div class="project web" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none;">
-                      <video controls style="width: 100%; height: auto; display: block;">
-                          <source src="../wp-content/uploads/sites/59/2024/09/sample-video-3.mp4" type="video/mp4">
-                          Your browser does not support the video tag.
-                      </video>
-                  </div>
-                  
-                  <!-- Creatives Projects -->
-                  <div class="project applications" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none;">
-                      <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Creative Project 1" style="width: 100%; height: auto; display: block;">
-                  </div>
-                  <div class="project applications" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none;">
-                      <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (3).jpeg" alt="Creative Project 2" style="width: 100%; height: auto; display: block;">
-                  </div>
-                  <div class="project applications" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none;">
-                      <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15.jpeg" alt="Creative Project 3" style="width: 100%; height: auto; display: block;">
-                  </div>
-                  
-                  <!-- Leads Results Projects -->
-                  <div class="project banner" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none;">
-                      <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15.jpeg" alt="Leads Result 1" style="width: 100%; height: auto; display: block;">
-                  </div>
-                  <div class="project banner" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none;">
-                      <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Leads Result 2" style="width: 100%; height: auto; display: block;">
-                  </div>
-                  <div class="project banner" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: none;">
-                      <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (3).jpeg" alt="Leads Result 3" style="width: 100%; height: auto; display: block;">
-                  </div>
-              </div>
-          </div>
-          
-          <style>
+
+            <style>
+
+      
+              body {
+                  background-color: #f9f9f9;
+                  color: #333;
+                  line-height: 1.6;
+              }
+      
+              .container {
+                  max-width: 1400px;
+                  margin: 0 auto;
+                  padding: 20px;
+              }
+      
+              /* Navigation Tabs */
+              .filter-tabs {
+                  border-bottom: 1px solid #eee;
+                  margin-bottom: 30px;
+                  overflow-x: auto;
+                  white-space: nowrap;
+                  -webkit-overflow-scrolling: touch;
+                  scrollbar-width: none;
+                  display: flex;
+                  padding-bottom: 10px;
+              }
+      
+              .filter-tabs::-webkit-scrollbar {
+                  display: none;
+              }
+      
+              .filter-tabs ul {
+                  list-style: none;
+                  padding: 0;
+                  display: flex;
+                  margin: 0;
+              }
+      
+              .filter-tabs li {
+                margin-right: 15px; /* Reduced from 25px to accommodate padding */
+                padding-bottom: 10px;
+                cursor: pointer;
+                font-size: clamp(0.9rem, 2vw, 1.1rem);
+                transition: all 0.3s ease;
+                position: relative;
+                padding: 8px 15px; /* Added padding for all tabs */
+                border-radius: 20px; /* Added for all tabs */
+            }
+            
+            .filter-tabs li.active {
+                font-weight: 600;
+                color: #333;
+                background-color: white;
+                padding: 8px 15px;
+                border-radius: 20px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+            
+            .filter-tabs li.active::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 15px;
+                width: calc(100% - 30px);
+                height: 2px;
+                background-color: #333;
+                transition: all 0.3s ease;
+            }
+              /* Section Header */
+              .section-header {
+                  text-align: center;
+                  margin-bottom: 40px;
+                  animation: fadeIn 0.5s ease;
+              }
+      
+              .section-header h2 {
+                  font-size: clamp(1.5rem, 4vw, 2rem);
+                  margin-bottom: 15px;
+                  color: #333;
+              }
+      
+              .section-header p {
+                  font-size: clamp(0.9rem, 2vw, 1.1rem);
+                  color: #666;
+                  max-width: 700px;
+                  margin: 0 auto;
+              }
+      
+              /* Pinterest-Style Masonry Grid */
+              .masonry-grid {
+                  column-count: 4;
+                  column-gap: 20px;
+                  width: 100%;
+              }
+      
+              .masonry-item {
+                  break-inside: avoid;
+                  margin-bottom: 20px;
+                  border-radius: 12px;
+                  overflow: hidden;
+                  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                  background-color: #fff;
+                  transform: translateY(20px);
+                  opacity: 0;
+                  animation: slideUp 0.5s ease forwards;
+                  position: relative;
+              }
+      
+              .masonry-item:hover .media-container img,
+              .masonry-item:hover .media-container video {
+                  transform: scale(1.03);
+              }
+      
+              .media-container {
+                  position: relative;
+                  width: 100%;
+                  overflow: hidden;
+              }
+      
+              .media-container img,
+              .media-container video {
+                  width: 100%;
+                  height: auto;
+                  display: block;
+                  object-fit: cover;
+                  transition: transform 0.4s ease;
+              }
+      
+              /* Video specific styles */
+              .media-container video {
+                  background-color: #000;
+              }
+      
+              /* Animations */
               @keyframes fadeIn {
                   from { opacity: 0; transform: translateY(-10px); }
                   to { opacity: 1; transform: translateY(0); }
@@ -3049,113 +3097,219 @@
                   from { opacity: 0; transform: translateY(20px); }
                   to { opacity: 1; transform: translateY(0); }
               }
-              
-              .project {
-                  animation: slideUp 0.5s ease forwards;
-                  opacity: 0;
+      
+              /* Responsive Adjustments */
+              @media (min-width: 2000px) {
+                  .masonry-grid {
+                      column-count: 5;
+                  }
               }
-              
-              /* Delay animations for grid items */
-              .project:nth-child(1) { animation-delay: 0.1s; }
-              .project:nth-child(2) { animation-delay: 0.2s; }
-              .project:nth-child(3) { animation-delay: 0.3s; }
-              .project:nth-child(4) { animation-delay: 0.4s; }
-              .project:nth-child(5) { animation-delay: 0.5s; }
-              .project:nth-child(6) { animation-delay: 0.6s; }
-              
-              /* Responsive adjustments */
+      
+              @media (max-width: 1400px) {
+                  .masonry-grid {
+                      column-count: 3;
+                  }
+              }
+      
               @media (max-width: 1024px) {
-                  #projects-grid {
-                      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                  .masonry-grid {
+                      column-count: 3;
+                      column-gap: 15px;
+                  }
+                  
+                  .masonry-item {
+                      margin-bottom: 15px;
                   }
               }
-              
+      
               @media (max-width: 768px) {
-                  #projects-grid {
-                      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                  .masonry-grid {
+                      column-count: 2;
+                      column-gap: 15px;
+                  }
+                  
+                  .container {
+                      padding: 15px;
+                  }
+                  
+                  .filter-tabs li {
+                      margin-right: 20px;
                   }
               }
-              
-              @media (max-width: 600px) {
-                  #projects-grid {
-                      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-                  }
-              }
-              
+      
               @media (max-width: 480px) {
-                  #projects-grid {
-                      grid-template-columns: 1fr;
+                  .masonry-grid {
+                      column-count: 2;
                   }
                   
-                  /* Navigation tabs */
-                  ul {
-                      padding-bottom: 10px;
-                      display: flex;
-                      flex-wrap: wrap;
-                      white-space: normal;
+                  .container {
+                      padding: 10px;
                   }
                   
-                  li {
+                  .filter-tabs li {
                       margin-right: 15px;
-                      margin-bottom: 10px;
-                      white-space: nowrap;
+                      font-size: 0.9rem;
+                  }
+                  
+                  .section-header {
+                      margin-bottom: 25px;
                   }
               }
-              
-              @media (max-width: 360px) {
-                  #projects-grid {
-                      gap: 15px;
-                  }
-              }
+      
+              /* Animation delays for staggered effect */
+              .delay-1 { animation-delay: 0.1s; }
+              .delay-2 { animation-delay: 0.2s; }
+              .delay-3 { animation-delay: 0.3s; }
+              .delay-4 { animation-delay: 0.4s; }
+              .delay-5 { animation-delay: 0.5s; }
+              .delay-6 { animation-delay: 0.6s; }
           </style>
-          
+            <div class="container">
+              <!-- Navigation -->
+              <div class="filter-tabs">
+                  <ul>
+                      <li class="tab-item active" data-filter="branding">Branding</li>
+                      <li class="tab-item" data-filter="web">Video Productions</li>
+                      <li class="tab-item" data-filter="applications">Creatives</li>
+                      <li class="tab-item" data-filter="banner">Leads Results</li>
+                  </ul>
+              </div>
+              
+              <!-- Leads Results Header -->
+              <div id="section-header" class="section-header" style="display: none;">
+                  <h2>From Clicks to Clients</h2>
+                  <p>See how our strategies convert visitors into valuable customers for your business.</p>
+              </div>
+              
+              <!-- Masonry Grid Container -->
+              <div class="masonry-grid">
+                  <!-- Branding Projects -->
+                  <div class="masonry-item project branding delay-1">
+                      <div class="media-container">
+                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Sparkle Branding">
+                      </div>
+                  </div>
+                  <div class="masonry-item project branding delay-2">
+                      <div class="media-container">
+                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15.jpeg" alt="Prana Branding">
+                      </div>
+                  </div>
+                  <div class="masonry-item project branding delay-3">
+                      <div class="media-container">
+                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (3).jpeg" alt="Health Branding">
+                      </div>
+                  </div>
+                  
+                  <!-- Video Productions Projects -->
+                  <div class="masonry-item project web delay-1" style="display: none;">
+                      <div class="media-container">
+                          <video controls muted loop playsinline>
+                              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745140573/Arathy_-_Review_Testimonial_umxn5a.mp4" type="video/mp4">
+                          </video>
+                      </div>
+                  </div>
+                  <div class="masonry-item project web delay-2" style="display: none;">
+                      <div class="media-container">
+                          <video controls muted loop playsinline>
+                              <source src="../wp-content/uploads/sites/59/2024/09/sample-video-2.mp4" type="video/mp4">
+                          </video>
+                      </div>
+                  </div>
+                  <div class="masonry-item project web delay-3" style="display: none;">
+                      <div class="media-container">
+                          <video controls muted loop playsinline>
+                              <source src="../wp-content/uploads/sites/59/2024/09/sample-video-3.mp4" type="video/mp4">
+                          </video>
+                      </div>
+                  </div>
+                  
+                  <!-- Creatives Projects -->
+                  <div class="masonry-item project applications delay-1" style="display: none;">
+                      <div class="media-container">
+                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Creative Project 1">
+                      </div>
+                  </div>
+                  <div class="masonry-item project applications delay-2" style="display: none;">
+                      <div class="media-container">
+                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (3).jpeg" alt="Creative Project 2">
+                      </div>
+                  </div>
+                  <div class="masonry-item project applications delay-3" style="display: none;">
+                      <div class="media-container">
+                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15.jpeg" alt="Creative Project 3">
+                      </div>
+                  </div>
+                  
+                  <!-- Leads Results Projects -->
+                  <div class="masonry-item project banner delay-1" style="display: none;">
+                      <div class="media-container">
+                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15.jpeg" alt="Leads Result 1">
+                      </div>
+                  </div>
+                  <div class="masonry-item project banner delay-2" style="display: none;">
+                      <div class="media-container">
+                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Leads Result 2">
+                      </div>
+                  </div>
+                  <div class="masonry-item project banner delay-3" style="display: none;">
+                      <div class="media-container">
+                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (3).jpeg" alt="Leads Result 3">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      
           <script>
-              // Initialize with Branding projects shown by default
               document.addEventListener('DOMContentLoaded', function() {
+                  // Initialize with Branding projects shown by default
                   filterProjects('branding');
-                  setActiveTab('branding-tab');
-                  setupResponsiveGrid();
+                  
+                  // Add click event listeners to all tabs
+                  const tabs = document.querySelectorAll('.tab-item');
+                  tabs.forEach(tab => {
+                      tab.addEventListener('click', function() {
+                          const filter = this.getAttribute('data-filter');
+                          filterProjects(filter);
+                          
+                          // Update active tab
+                          tabs.forEach(t => t.classList.remove('active'));
+                          this.classList.add('active');
+                      });
+                  });
+                  
+                  // Lazy load videos when they come into view
+                  if ('IntersectionObserver' in window) {
+                      const videoObserver = new IntersectionObserver((entries) => {
+                          entries.forEach(entry => {
+                              if (entry.isIntersecting) {
+                                  const video = entry.target;
+                                  if (video.paused) {
+                                      video.play().catch(e => console.log("Auto-play prevented:", e));
+                                  }
+                                  videoObserver.unobserve(video);
+                              }
+                          });
+                      }, { threshold: 0.5 });
+                      
+                      document.querySelectorAll('video').forEach(video => {
+                          videoObserver.observe(video);
+                      });
+                  }
               });
-          
-              function setupResponsiveGrid() {
-                  const grid = document.getElementById('projects-grid');
-                  const viewportWidth = window.innerWidth;
-                  
-                  if (viewportWidth >= 1024) {
-                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(250px, 1fr))';
-                  } else if (viewportWidth >= 768) {
-                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(220px, 1fr))';
-                  } else if (viewportWidth >= 600) {
-                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))';
-                  } else if (viewportWidth >= 480) {
-                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(180px, 1fr))';
-                  } else {
-                      grid.style.gridTemplateColumns = '1fr';
-                  }
-              }
-          
+      
               function filterProjects(category) {
-                  const grid = document.getElementById('projects-grid');
-                  const leadsHeader = document.getElementById('leads-header');
+                  const sectionHeader = document.getElementById('section-header');
                   
-                  // Show/hide leads header
-                  if (category === 'banner') {
-                      leadsHeader.style.display = 'block';
-                  } else {
-                      leadsHeader.style.display = 'none';
-                  }
+                  // Show/hide section header
+                  sectionHeader.style.display = category === 'banner' ? 'block' : 'none';
                   
-                  // Set appropriate grid layout based on screen size
-                  setupResponsiveGrid();
-                  
-                  // Hide all projects and reset animations
+                  // Reset all projects and animations
                   const allProjects = document.querySelectorAll('.project');
                   allProjects.forEach(project => {
                       project.style.display = 'none';
                       project.style.opacity = '0';
                       project.style.animation = 'none';
                       void project.offsetWidth; // Trigger reflow
-                      project.style.animation = 'slideUp 0.5s ease forwards';
                   });
                   
                   // Show projects of selected category with staggered animation
@@ -3163,39 +3317,30 @@
                   selectedProjects.forEach((project, index) => {
                       setTimeout(() => {
                           project.style.display = 'block';
+                          project.style.animation = 'slideUp 0.5s ease forwards';
                           project.style.animationDelay = `${index * 0.1}s`;
                       }, 10);
                   });
                   
-                  // Update active tab
-                  setActiveTab(`${category}-tab`);
-              }
-              
-              function setActiveTab(tabId) {
-                  const allTabs = document.querySelectorAll('li');
-                  allTabs.forEach(tab => {
-                      tab.style.borderBottom = 'none';
-                      tab.style.fontWeight = 'normal';
-                      tab.style.color = '';
+                  // Pause all videos when switching categories
+                  document.querySelectorAll('video').forEach(video => {
+                      video.pause();
                   });
                   
-                  const activeTab = document.getElementById(tabId);
-                  if (activeTab) {
-                      activeTab.style.borderBottom = '2px solid #333';
-                      activeTab.style.fontWeight = 'bold';
-                      activeTab.style.color = '#333';
-                  }
+                  // Play videos that are now visible
+                  setTimeout(() => {
+                      document.querySelectorAll(`.${category} video`).forEach(video => {
+                          if (video.offsetParent !== null) { // Check if video is visible
+                              video.play().catch(e => console.log("Auto-play prevented:", e));
+                          }
+                      });
+                  }, 300);
               }
-          
-              // Make responsive to window resize with debounce
-              let resizeTimer;
-              window.addEventListener('resize', function() {
-                  clearTimeout(resizeTimer);
-                  resizeTimer = setTimeout(function() {
-                      setupResponsiveGrid();
-                  }, 250);
-              });
           </script>
+          
+
+          
+
             <!-- <div
               class="elementor-element elementor-element-b1dff4f e-flex e-con-boxed e-con e-child"
               data-id="b1dff4f"
