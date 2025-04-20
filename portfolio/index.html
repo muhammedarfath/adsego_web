@@ -2955,7 +2955,7 @@
             </div>
             <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
               <!-- Navigation -->
-              <div style="border-bottom: 1px solid #eee; margin-bottom: 30px; overflow-x: auto; white-space: nowrap;">
+              <div style="border-bottom: 1px solid #eee; margin-bottom: 30px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;">
                   <ul style="list-style: none; padding: 0; display: inline-flex; margin: 0;">
                       <li style="margin-right: 20px; padding-bottom: 10px; cursor: pointer;" onclick="filterProjects('branding')" id="branding-tab">
                           <span style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Branding</span>
@@ -2979,7 +2979,7 @@
               </div>
               
               <!-- Projects Grid -->
-              <div id="projects-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+              <div id="projects-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
                   <!-- Branding Projects -->
                   <div class="project branding" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                       <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Sparkle Branding" style="width: 100%; height: auto; display: block;">
@@ -2998,9 +2998,7 @@
                       muted 
                       loop 
                       playsinline >
-                          <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745140573/Arathy_-_Review_Testimonial_umxn5a.mp4" 
-
-                         type="video/mp4">
+                          <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745140573/Arathy_-_Review_Testimonial_umxn5a.mp4" type="video/mp4">
                           Your browser does not support the video tag.
                       </video>
                   </div>
@@ -3066,9 +3064,21 @@
               .project:nth-child(6) { animation-delay: 0.6s; }
               
               /* Responsive adjustments */
+              @media (max-width: 1024px) {
+                  #projects-grid {
+                      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                  }
+              }
+              
               @media (max-width: 768px) {
                   #projects-grid {
-                      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                  }
+              }
+              
+              @media (max-width: 600px) {
+                  #projects-grid {
+                      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
                   }
               }
               
@@ -3077,12 +3087,24 @@
                       grid-template-columns: 1fr;
                   }
                   
+                  /* Navigation tabs */
                   ul {
                       padding-bottom: 10px;
+                      display: flex;
+                      flex-wrap: wrap;
+                      white-space: normal;
                   }
                   
                   li {
                       margin-right: 15px;
+                      margin-bottom: 10px;
+                      white-space: nowrap;
+                  }
+              }
+              
+              @media (max-width: 360px) {
+                  #projects-grid {
+                      gap: 15px;
                   }
               }
           </style>
@@ -3097,9 +3119,17 @@
           
               function setupResponsiveGrid() {
                   const grid = document.getElementById('projects-grid');
-                  if (window.innerWidth < 768) {
-                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(240px, 1fr))';
-                  } else if (window.innerWidth < 480) {
+                  const viewportWidth = window.innerWidth;
+                  
+                  if (viewportWidth >= 1024) {
+                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(250px, 1fr))';
+                  } else if (viewportWidth >= 768) {
+                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(220px, 1fr))';
+                  } else if (viewportWidth >= 600) {
+                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))';
+                  } else if (viewportWidth >= 480) {
+                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(180px, 1fr))';
+                  } else {
                       grid.style.gridTemplateColumns = '1fr';
                   }
               }
@@ -3115,20 +3145,8 @@
                       leadsHeader.style.display = 'none';
                   }
                   
-                  // Change grid layout based on screen size
-                  if (window.innerWidth >= 768) {
-                      if (category === 'web') {
-                          grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-                      } else if (category === 'banner') {
-                          grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(350px, 1fr))';
-                      } else {
-                          grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(280px, 1fr))';
-                      }
-                  } else if (window.innerWidth >= 480) {
-                      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(240px, 1fr))';
-                  } else {
-                      grid.style.gridTemplateColumns = '1fr';
-                  }
+                  // Set appropriate grid layout based on screen size
+                  setupResponsiveGrid();
                   
                   // Hide all projects and reset animations
                   const allProjects = document.querySelectorAll('.project');
@@ -3143,8 +3161,10 @@
                   // Show projects of selected category with staggered animation
                   const selectedProjects = document.querySelectorAll(`.${category}`);
                   selectedProjects.forEach((project, index) => {
-                      project.style.display = 'block';
-                      project.style.animationDelay = `${index * 0.1}s`;
+                      setTimeout(() => {
+                          project.style.display = 'block';
+                          project.style.animationDelay = `${index * 0.1}s`;
+                      }, 10);
                   });
                   
                   // Update active tab
@@ -3160,14 +3180,20 @@
                   });
                   
                   const activeTab = document.getElementById(tabId);
-                  activeTab.style.borderBottom = '2px solid #333';
-                  activeTab.style.fontWeight = 'bold';
-                  activeTab.style.color = '#333';
+                  if (activeTab) {
+                      activeTab.style.borderBottom = '2px solid #333';
+                      activeTab.style.fontWeight = 'bold';
+                      activeTab.style.color = '#333';
+                  }
               }
           
-              // Make responsive to window resize
+              // Make responsive to window resize with debounce
+              let resizeTimer;
               window.addEventListener('resize', function() {
-                  setupResponsiveGrid();
+                  clearTimeout(resizeTimer);
+                  resizeTimer = setTimeout(function() {
+                      setupResponsiveGrid();
+                  }, 250);
               });
           </script>
             <!-- <div
