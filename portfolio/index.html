@@ -2953,1471 +2953,554 @@
                 </div>
               </div>
             </div>
-
             <style>
-
-      
+              /* Reset and base styles */
+              * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+              }
+          
               body {
-                  background-color: #f9f9f9;
+                  font-family: 'Inter', sans-serif;
+                  background-color: #ffffff;
                   color: #333;
                   line-height: 1.6;
-              }
-      
-              .container {
+                  padding: 20px;
                   max-width: 1400px;
                   margin: 0 auto;
-                  padding: 20px;
               }
-      
-              /* Navigation Tabs */
-              .filter-tabs {
-                  border-bottom: 1px solid #eee;
+          
+              /* Navigation styles */
+              .main-nav {
                   margin-bottom: 30px;
-                  overflow-x: auto;
-                  white-space: nowrap;
-                  -webkit-overflow-scrolling: touch;
-                  scrollbar-width: none;
+                  position: relative;
+              }
+          
+              .main-nav ul {
                   display: flex;
-                  padding-bottom: 10px;
-              }
-      
-              .filter-tabs::-webkit-scrollbar {
-                  display: none;
-              }
-      
-              .filter-tabs ul {
                   list-style: none;
-                  padding: 0;
-                  display: flex;
-                  margin: 0;
+                  border-bottom: 1px solid #e0e0e0;
+                  padding-bottom: 10px;
+                  flex-wrap: wrap;
+                  position: relative;
               }
-      
-              .filter-tabs li {
-                margin-right: 15px; /* Reduced from 25px to accommodate padding */
-                padding-bottom: 10px;
-                cursor: pointer;
-                font-size: clamp(0.9rem, 2vw, 1.1rem);
-                transition: all 0.3s ease;
-                position: relative;
-                padding: 8px 15px; /* Added padding for all tabs */
-                border-radius: 20px; /* Added for all tabs */
-            }
-            
-            .filter-tabs li.active {
-                font-weight: 600;
-                color: #333;
-                background-color: white;
-                padding: 8px 15px;
-                border-radius: 20px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            }
-            
-            .filter-tabs li.active::after {
-                content: '';
-                position: absolute;
-                bottom: -10px;
-                left: 15px;
-                width: calc(100% - 30px);
-                height: 2px;
-                background-color: #333;
-                transition: all 0.3s ease;
-            }
-              /* Section Header */
-              .section-header {
-                  text-align: center;
-                  margin-bottom: 40px;
-                  animation: fadeIn 0.5s ease;
+          
+              .main-nav li {
+                  margin-right: 30px;
+                  padding: 5px 0;
+                  position: relative;
+                  z-index: 2;
               }
-      
-              .section-header h2 {
-                  font-size: clamp(1.5rem, 4vw, 2rem);
-                  margin-bottom: 15px;
-                  color: #333;
+          
+              .main-nav a {
+                  text-decoration: none;
+                  color: #fff;
+                  font-size: 16px;
+                  font-weight: 500;
+                  transition: color 0.3s;
+                  display: block;
+                  padding: 5px 0;
               }
-      
-              .section-header p {
-                  font-size: clamp(0.9rem, 2vw, 1.1rem);
+          
+              .main-nav a:hover {
                   color: #666;
-                  max-width: 700px;
-                  margin: 0 auto;
               }
-      
-              /* Pinterest-Style Masonry Grid */
+          
+              .main-nav li.active a {
+                  font-weight: 600;
+              }
+          
+              /* Animated underline indicator */
+              .nav-indicator {
+                  position: absolute;
+                  bottom: -1px;
+                  height: 2px;
+                  background-color: #AD49E1;
+                  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                  z-index: 1;
+              }
+          
+              /* Portfolio sections */
+              .portfolio-section {
+                  display: none;
+                  opacity: 0;
+                  transform: translateY(20px);
+                  transition: opacity 0.5s ease, transform 0.5s ease;
+              }
+          
+              .portfolio-section.active {
+                  display: block;
+                  opacity: 1;
+                  transform: translateY(0);
+              }
+          
+              /* Section header */
+              .section-header {
+                  margin-bottom: 30px;
+                  text-align: center;
+              }
+          
+              .section-header h2 {
+                  font-size: 2.5rem;
+                  font-weight: 700;
+                  margin-bottom: 10px;
+              }
+          
+              /* Masonry grid */
               .masonry-grid {
-                  column-count: 4;
+                  column-count: 3;
                   column-gap: 20px;
-                  width: 100%;
               }
-      
-              .masonry-item {
+          
+              .portfolio-item {
                   break-inside: avoid;
                   margin-bottom: 20px;
-                  border-radius: 12px;
+                  border-radius: 4px;
                   overflow: hidden;
-                  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                  background-color: #fff;
-                  transform: translateY(20px);
-                  opacity: 0;
-                  animation: slideUp 0.5s ease forwards;
+                  transition: transform 0.3s ease, box-shadow 0.3s ease;
+                  cursor: pointer;
                   position: relative;
               }
-      
-              .masonry-item:hover .media-container img,
-              .masonry-item:hover .media-container video {
-                  transform: scale(1.03);
+          
+              .portfolio-item:hover {
+                  transform: translateY(-5px);
+                  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
               }
-      
-              .media-container {
-                  position: relative;
-                  width: 100%;
-                  overflow: hidden;
-              }
-      
-              .media-container img,
-              .media-container video {
+          
+              .portfolio-item img,
+              .portfolio-item video {
                   width: 100%;
                   height: auto;
                   display: block;
-                  object-fit: cover;
-                  transition: transform 0.4s ease;
               }
-      
-              /* Video specific styles */
-              .media-container video {
+          
+              /* Video styling */
+              video {
                   background-color: #000;
               }
-      
-              /* Animations */
-              @keyframes fadeIn {
-                  from { opacity: 0; transform: translateY(-10px); }
-                  to { opacity: 1; transform: translateY(0); }
-              }
-              
-              @keyframes slideUp {
-                  from { opacity: 0; transform: translateY(20px); }
-                  to { opacity: 1; transform: translateY(0); }
-              }
-      
-              /* Responsive Adjustments */
-              @media (min-width: 2000px) {
-                  .masonry-grid {
-                      column-count: 5;
-                  }
-              }
-      
-              @media (max-width: 1400px) {
-                  .masonry-grid {
-                      column-count: 3;
-                  }
-              }
-      
+          
+              /* Responsive styles */
               @media (max-width: 1024px) {
                   .masonry-grid {
-                      column-count: 3;
-                      column-gap: 15px;
-                  }
-                  
-                  .masonry-item {
-                      margin-bottom: 15px;
+                      column-count: 2;
                   }
               }
-      
+          
               @media (max-width: 768px) {
-                  .masonry-grid {
-                      column-count: 2;
-                      column-gap: 15px;
+                  .main-nav ul {
+                      justify-content: center;
                   }
                   
-                  .container {
-                      padding: 15px;
+                  .main-nav li {
+                      margin: 0 15px;
                   }
-                  
-                  .filter-tabs li {
-                      margin-right: 20px;
+          
+                  .section-header h2 {
+                      font-size: 2rem;
                   }
               }
-      
-              @media (max-width: 480px) {
+          
+              @media (max-width: 576px) {
                   .masonry-grid {
                       column-count: 2;
                   }
                   
-                  .container {
+                  .main-nav ul {
+                      flex-direction: column;
+                      align-items: center;
+                  }
+                  
+                  .main-nav li {
+                      margin: 5px 0;
+                  }
+                  
+                  body {
                       padding: 10px;
                   }
-                  
-                  .filter-tabs li {
-                      margin-right: 15px;
-                      font-size: 0.9rem;
+          
+                  .nav-indicator {
+                      display: none;
                   }
-                  
-                  .section-header {
-                      margin-bottom: 25px;
+          
+                  .section-header h2 {
+                      font-size: 1.8rem;
                   }
               }
-      
-              /* Animation delays for staggered effect */
-              .delay-1 { animation-delay: 0.1s; }
-              .delay-2 { animation-delay: 0.2s; }
-              .delay-3 { animation-delay: 0.3s; }
-              .delay-4 { animation-delay: 0.4s; }
-              .delay-5 { animation-delay: 0.5s; }
-              .delay-6 { animation-delay: 0.6s; }
           </style>
-            <div class="container">
-              <!-- Navigation -->
-              <div class="filter-tabs">
+          
+          <div>
+              <nav class="main-nav">
                   <ul>
-                      <li class="tab-item active" data-filter="branding">Branding</li>
-                      <li class="tab-item" data-filter="web">Video Productions</li>
-                      <li class="tab-item" data-filter="applications">Creatives</li>
-                      <li class="tab-item" data-filter="banner">Leads Results</li>
+                      <li class="active" data-section="branding"><a href="#branding">Branding</a></li>
+                      <li data-section="video"><a href="#video">Video Productions</a></li>
+                      <li data-section="creatives"><a href="#creatives">Creatives</a></li>
+                      <li data-section="leads"><a href="#leads">Leads Results</a></li>
                   </ul>
-              </div>
-              
-              <!-- Leads Results Header -->
-              <div id="section-header" class="section-header" style="display: none;">
-                  <h2>From Clicks to Clients</h2>
-                  <p>See how our strategies convert visitors into valuable customers for your business.</p>
-              </div>
-              
-              <!-- Masonry Grid Container -->
-              <div class="masonry-grid">
-                  <!-- Branding Projects -->
-                  <div class="masonry-item project branding delay-1">
-                      <div class="media-container">
-                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Sparkle Branding">
-                      </div>
-                  </div>
-                  <div class="masonry-item project branding delay-2">
-                      <div class="media-container">
-                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15.jpeg" alt="Prana Branding">
-                      </div>
-                  </div>
-                  <div class="masonry-item project branding delay-3">
-                      <div class="media-container">
-                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (3).jpeg" alt="Health Branding">
-                      </div>
-                  </div>
-                  
-                  <!-- Video Productions Projects -->
-                  <div class="masonry-item project web delay-1" style="display: none;">
-                      <div class="media-container">
-                          <video controls muted loop playsinline>
-                              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745140573/Arathy_-_Review_Testimonial_umxn5a.mp4" type="video/mp4">
-                          </video>
-                      </div>
-                  </div>
-                  <div class="masonry-item project web delay-2" style="display: none;">
-                      <div class="media-container">
-                          <video controls muted loop playsinline>
-                              <source src="../wp-content/uploads/sites/59/2024/09/sample-video-2.mp4" type="video/mp4">
-                          </video>
-                      </div>
-                  </div>
-                  <div class="masonry-item project web delay-3" style="display: none;">
-                      <div class="media-container">
-                          <video controls muted loop playsinline>
-                              <source src="../wp-content/uploads/sites/59/2024/09/sample-video-3.mp4" type="video/mp4">
-                          </video>
-                      </div>
-                  </div>
-                  
-                  <!-- Creatives Projects -->
-                  <div class="masonry-item project applications delay-1" style="display: none;">
-                      <div class="media-container">
-                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Creative Project 1">
-                      </div>
-                  </div>
-                  <div class="masonry-item project applications delay-2" style="display: none;">
-                      <div class="media-container">
-                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (3).jpeg" alt="Creative Project 2">
-                      </div>
-                  </div>
-                  <div class="masonry-item project applications delay-3" style="display: none;">
-                      <div class="media-container">
-                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15.jpeg" alt="Creative Project 3">
-                      </div>
-                  </div>
-                  
-                  <!-- Leads Results Projects -->
-                  <div class="masonry-item project banner delay-1" style="display: none;">
-                      <div class="media-container">
-                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15.jpeg" alt="Leads Result 1">
-                      </div>
-                  </div>
-                  <div class="masonry-item project banner delay-2" style="display: none;">
-                      <div class="media-container">
-                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (1).jpeg" alt="Leads Result 2">
-                      </div>
-                  </div>
-                  <div class="masonry-item project banner delay-3" style="display: none;">
-                      <div class="media-container">
-                          <img src="../wp-content/uploads/sites/59/2024/09/WhatsApp Image 2025-04-14 at 11.08.15 (3).jpeg" alt="Leads Result 3">
-                      </div>
-                  </div>
-              </div>
+                  <div class="nav-indicator"></div>
+              </nav>
           </div>
-      
+          
+          <main>
+              <!-- Branding Section -->
+              <section id="branding" class="portfolio-section active">
+                  <div class="masonry-grid">
+                    <div class="portfolio-item">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/IMG_9885_lqhjxd.jpg" alt="Creative design example">
+                  </div>
+                  <div class="portfolio-item">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/mrmalayali.creatives-20250322-0007_tuyiys.jpg" alt="Creative design example">
+                  </div>
+                  <div class="portfolio-item">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/mrmalayali.creatives-20250322-0008_guxnc1.jpg" alt="Creative design example">
+                  </div>
+                  <div class="portfolio-item">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/IMG_9886_suwrqb.jpg" alt="Creative design example">
+                  </div>
+                  <div class="portfolio-item">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/IMG_9891_fr6yzh.jpg" alt="Creative design example">
+                  </div>
+                  </div>
+              </section>
+          
+              <!-- Video Productions Section -->
+              <section id="video" class="portfolio-section">
+                  <div class="masonry-grid">
+
+
+
+                    <div class="portfolio-item">
+                      <video autoplay loop muted>
+                          <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745230400/AGD_BROLL_CLOSE_SHOTS_2_caj0v2.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                      </video>
+                  </div>
+        
+        
+
+        
+                <div class="portfolio-item">
+                  <video autoplay loop muted>
+                      <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745230402/nagas_close_shots_2_sg6qhk.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+              </div>
+
+
+
+
+
+
+
+                      <div class="portfolio-item">
+                          <video autoplay loop muted>
+                              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745140573/Arathy_-_Review_Testimonial_umxn5a.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                          </video>
+                      </div>
+                      <div class="portfolio-item">
+                          <video autoplay loop muted>
+                              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745226959/WW_Reel_nkctas.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                          </video>
+                      </div>
+
+                      <div class="portfolio-item">
+                        <video autoplay loop muted>
+                            <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745230407/AGD_05_r8x2rw.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                
+        
+                      <div class="portfolio-item">
+                          <video autoplay loop muted>
+                              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745227280/Jones_Gym_Reel_Broll_yucbcd.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                          </video>
+                      </div>
+                      <div class="portfolio-item">
+                          <video autoplay loop muted>
+                              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745228033/Aadisakkthi_Coverage_txehzw.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                          </video>
+                      </div>
+                      <div class="portfolio-item">
+                          <video autoplay loop muted>
+                              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745228019/iLEARN_IAS_INSTITUTE_INFRASTRUCTURE_BROLL_wa6ysr.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                          </video>
+                      </div>
+                      <div class="portfolio-item">
+                        <video autoplay loop muted>
+                            <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745230403/Agd_26_2_hgjxcx.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                      <div class="portfolio-item">
+                          <video autoplay loop muted>
+                              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745228018/Pothy_s_swarna_mahal_Theatre_Ad_ydg0kl.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                          </video>
+                      </div>
+                      <div class="portfolio-item">
+                        <video autoplay loop muted>
+                            <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745228011/Toyota_Commercial_Ad_Video_Broll_rr0lhd.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="portfolio-item">
+                      <video autoplay loop muted>
+                          <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745228854/Micro_leaves_-_40xleaves__mnkt4j.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                      </video>
+                  </div>
+                  <div class="portfolio-item">
+                    <video autoplay loop muted>
+                        <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745228830/Green_trends_-_Parvathy-_rdujff.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="portfolio-item">
+                  <video autoplay loop muted>
+                      <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745228829/Studio99_2_opdzit.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+              </div>
+              <div class="portfolio-item">
+                <video autoplay loop muted>
+                    <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745228829/Salath_Perfume.mp4_hvvpwr.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+
+
+
+            <div class="portfolio-item">
+              <video autoplay loop muted>
+                  <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745231099/Project_-_Malhar_hl0hhl.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+          </div>
+          <div class="portfolio-item">
+            <video autoplay loop muted>
+                <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745231098/Project_-_aaravam_ew7o1j.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+
+
+
+        <div class="portfolio-item">
+          <video autoplay loop muted>
+              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745232407/R1_Final_zrwn70.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+      </div>
+
+
+
+
+      <div class="portfolio-item">
+        <video autoplay loop muted>
+            <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745232404/R2_Final_uah5pn.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+
+
+
+    <div class="portfolio-item">
+      <video autoplay loop muted>
+          <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745231099/Project_-_Malhar_hl0hhl.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+  </div>
+
+
+
+            <div class="portfolio-item">
+              <video autoplay loop muted>
+                  <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745229579/bianco_anniversary_reel_bw5n3d.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+          </div>
+
+
+          <div class="portfolio-item">
+            <video autoplay loop muted>
+                <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745229575/STUDIO_99_Broll_vntg9u.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="portfolio-item">
+          <video autoplay loop muted>
+              <source src="https://res.cloudinary.com/dne0emieh/video/upload/v1745229573/saloon_Broll_Service_iszfv9.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+      </div>
+
+
+
+
+                  </div>
+              </section>
+          
+              <!-- Creatives Section -->
+              <section id="creatives" class="portfolio-section">
+                  <div class="masonry-grid">
+                      <div class="portfolio-item">
+                          <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154270/IMG_9890_p043nz.jpg" alt="Creative design example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/IMG_9885_lqhjxd.jpg" alt="Creative design example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/mrmalayali.creatives-20250322-0007_tuyiys.jpg" alt="Creative design example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/mrmalayali.creatives-20250322-0008_guxnc1.jpg" alt="Creative design example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/IMG_9886_suwrqb.jpg" alt="Creative design example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/IMG_9891_fr6yzh.jpg" alt="Creative design example">
+                      </div>
+                      <div class="portfolio-item">
+                        <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154268/IMG_9884_yfcj57.jpg" alt="Creative design example">
+                    </div>
+                    <div class="portfolio-item">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154268/IMG_9894_nzrnkt.jpg" alt="Creative design example">
+                  </div>
+                  <div class="portfolio-item">
+                    <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154268/mrmalayali.creatives-20250322-0006_wexqqs.jpg" alt="Creative design example">
+                </div>
+                <div class="portfolio-item">
+                  <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154268/IMG_9883_akotct.jpg" alt="Creative design example">
+              </div>
+              <div class="portfolio-item">
+                <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154268/IMG_9883_akotct.jpg" alt="Creative design example">
+            </div>
+                  </div>
+              </section>
+          
+              <!-- Leads Results Section -->
+              <section id="leads" class="portfolio-section">
+                  <div class="section-header">
+                      <h2>From clicks to clients</h2>
+                  </div>
+                  <div class="masonry-grid">
+                      <div class="portfolio-item">
+                          <img src="https://via.placeholder.com/400x600/F1C40F/FFFFFF?text=Leads+1" alt="Leads result example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://via.placeholder.com/400x400/F39C12/FFFFFF?text=Leads+2" alt="Leads result example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://via.placeholder.com/400x500/E67E22/FFFFFF?text=Leads+3" alt="Leads result example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://via.placeholder.com/400x300/D35400/FFFFFF?text=Leads+4" alt="Leads result example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://via.placeholder.com/400x600/E74C3C/FFFFFF?text=Leads+5" alt="Leads result example">
+                      </div>
+                      <div class="portfolio-item">
+                          <img src="https://via.placeholder.com/400x400/C0392B/FFFFFF?text=Leads+6" alt="Leads result example">
+                      </div>
+                  </div>
+              </section>
+          </main>
+          
           <script>
               document.addEventListener('DOMContentLoaded', function() {
-                  // Initialize with Branding projects shown by default
-                  filterProjects('branding');
+                  // Get all navigation items and sections
+                  const navItems = document.querySelectorAll('.main-nav li');
+                  const sections = document.querySelectorAll('.portfolio-section');
+                  const indicator = document.querySelector('.nav-indicator');
                   
-                  // Add click event listeners to all tabs
-                  const tabs = document.querySelectorAll('.tab-item');
-                  tabs.forEach(tab => {
-                      tab.addEventListener('click', function() {
-                          const filter = this.getAttribute('data-filter');
-                          filterProjects(filter);
-                          
-                          // Update active tab
-                          tabs.forEach(t => t.classList.remove('active'));
-                          this.classList.add('active');
-                      });
-                  });
-                  
-                  // Lazy load videos when they come into view
-                  if ('IntersectionObserver' in window) {
-                      const videoObserver = new IntersectionObserver((entries) => {
-                          entries.forEach(entry => {
-                              if (entry.isIntersecting) {
-                                  const video = entry.target;
-                                  if (video.paused) {
-                                      video.play().catch(e => console.log("Auto-play prevented:", e));
-                                  }
-                                  videoObserver.unobserve(video);
-                              }
-                          });
-                      }, { threshold: 0.5 });
-                      
-                      document.querySelectorAll('video').forEach(video => {
-                          videoObserver.observe(video);
-                      });
+                  // Set initial indicator position
+                  const activeItem = document.querySelector('.main-nav li.active');
+                  if (activeItem && indicator) {
+                      updateIndicator(activeItem);
                   }
-              });
-      
-              function filterProjects(category) {
-                  const sectionHeader = document.getElementById('section-header');
                   
-                  // Show/hide section header
-                  sectionHeader.style.display = category === 'banner' ? 'block' : 'none';
-                  
-                  // Reset all projects and animations
-                  const allProjects = document.querySelectorAll('.project');
-                  allProjects.forEach(project => {
-                      project.style.display = 'none';
-                      project.style.opacity = '0';
-                      project.style.animation = 'none';
-                      void project.offsetWidth; // Trigger reflow
-                  });
-                  
-                  // Show projects of selected category with staggered animation
-                  const selectedProjects = document.querySelectorAll(`.${category}`);
-                  selectedProjects.forEach((project, index) => {
-                      setTimeout(() => {
-                          project.style.display = 'block';
-                          project.style.animation = 'slideUp 0.5s ease forwards';
-                          project.style.animationDelay = `${index * 0.1}s`;
-                      }, 10);
-                  });
-                  
-                  // Pause all videos when switching categories
-                  document.querySelectorAll('video').forEach(video => {
-                      video.pause();
-                  });
-                  
-                  // Play videos that are now visible
-                  setTimeout(() => {
-                      document.querySelectorAll(`.${category} video`).forEach(video => {
-                          if (video.offsetParent !== null) { // Check if video is visible
-                              video.play().catch(e => console.log("Auto-play prevented:", e));
+                  // Add click event to each navigation item
+                  navItems.forEach(item => {
+                      item.addEventListener('click', function(e) {
+                          e.preventDefault();
+                          
+                          // Remove active class from all items and sections
+                          navItems.forEach(nav => nav.classList.remove('active'));
+                          sections.forEach(section => section.classList.remove('active'));
+                          
+                          // Add active class to clicked item
+                          this.classList.add('active');
+                          
+                          // Update the indicator position
+                          updateIndicator(this);
+                          
+                          // Get the section id from data attribute
+                          const sectionId = this.getAttribute('data-section');
+                          
+                          // Add active class to corresponding section with animation
+                          const targetSection = document.getElementById(sectionId);
+                          if (targetSection) {
+                              // First set opacity to 0 and transform
+                              targetSection.style.opacity = '0';
+                              targetSection.style.transform = 'translateY(20px)';
+                              targetSection.classList.add('active');
+                              
+                              // Force reflow to ensure the animation works
+                              void targetSection.offsetWidth;
+                              
+                              // Then animate to full opacity and position
+                              targetSection.style.opacity = '1';
+                              targetSection.style.transform = 'translateY(0)';
                           }
                       });
-                  }, 300);
-              }
+                  });
+                  
+                  // Portfolio items click effect
+                  const portfolioItems = document.querySelectorAll('.portfolio-item');
+                  
+                  portfolioItems.forEach(item => {
+                      item.addEventListener('click', function() {
+                          // Simple animation effect
+                          this.style.transform = 'scale(1.05)';
+                          setTimeout(() => {
+                              this.style.transform = '';
+                          }, 300);
+                      });
+                  });
+                  
+                  // Function to update the indicator position
+                  function updateIndicator(item) {
+                      if (!indicator) return;
+                      
+                      const itemRect = item.getBoundingClientRect();
+                      const navRect = document.querySelector('.main-nav ul').getBoundingClientRect();
+                      
+                      indicator.style.width = `${itemRect.width}px`;
+                      indicator.style.left = `${itemRect.left - navRect.left}px`;
+                  }
+                  
+                  // Update indicator on window resize
+                  window.addEventListener('resize', function() {
+                      const activeItem = document.querySelector('.main-nav li.active');
+                      if (activeItem && indicator) {
+                          updateIndicator(activeItem);
+                      }
+                  });
+              });
           </script>
-          
+          </div>
 
-          
-
-            <!-- <div
-              class="elementor-element elementor-element-b1dff4f e-flex e-con-boxed e-con e-child"
-              data-id="b1dff4f"
-              data-element_type="container"
-               >
-              <div class="e-con-inner">
-                <div
-                  class="elementor-element elementor-element-11a93ed e-con-full e-flex e-con e-child"
-                  data-id="11a93ed"
-                  data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-4a7a17d e-con-full e-flex e-con e-child"
-                    data-id="4a7a17d"
-                    data-element_type="container"
-                    data-settings='{"background_background":"classic"}'
-                  >
-                    <div
-                      class="elementor-element elementor-element-a36837f elementor-widget elementor-widget-spacer"
-                      data-id="a36837f"
-                      data-element_type="widget"
-                      data-widget_type="spacer.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <div class="elementor-spacer">
-                          <div class="elementor-spacer-inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-26800d9 elementor-absolute e-transform e-transform elementor-widget elementor-widget-jkit_button"
-                      data-id="26800d9"
-                      data-element_type="widget"
-                      data-settings='{"_position":"absolute","_transform_rotateZ_effect":{"unit":"px","size":"-50","sizes":[]},"_transform_rotateZ_effect_hover":{"unit":"px","size":"0","sizes":[]},"_transform_rotateZ_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_mobile":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_mobile":{"unit":"deg","size":"","sizes":[]}}'
-                      data-widget_type="jkit_button.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <div
-                          class="jeg-elementor-kit jkit-button icon-position-after jeg_module_689_2_67deba51debfd"
-                        >
-                          <a href="#" class="jkit-button-wrapper"
-                            ><i
-                              aria-hidden="true"
-                              class="jki jki-right-arrow-light"
-                            ></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-6395f7c e-con-full e-flex e-con e-child"
-                    data-id="6395f7c"
-                    data-element_type="container"
-                  >
-                    <div
-                      class="elementor-element elementor-element-41a0000 elementor-widget elementor-widget-heading"
-                      data-id="41a0000"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          Growth Marketing for Anox
-                        </h2>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-6f9bc29 e-con-full e-flex e-con e-child"
-                      data-id="6f9bc29"
-                      data-element_type="container"
-                    >
-                      <div
-                        class="elementor-element elementor-element-049ef45 elementor-widget elementor-widget-heading"
-                        data-id="049ef45"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Boost
-                          </h2>
-                        </div>
-                      </div>
-                      <div
-                        class="elementor-element elementor-element-f4188b3 elementor-widget elementor-widget-heading"
-                        data-id="f4188b3"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Marketing
-                          </h2>
-                        </div>
-                      </div>
-                      <div
-                        class="elementor-element elementor-element-be3dfa9 elementor-widget elementor-widget-heading"
-                        data-id="be3dfa9"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Website
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="elementor-element elementor-element-9c39b9a e-con-full e-flex e-con e-child"
-                  data-id="9c39b9a"
-                  data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-62f2708 e-con-full e-flex e-con e-child"
-                    data-id="62f2708"
-                    data-element_type="container"
-                    data-settings='{"background_background":"classic"}'
-                  >
-                    <div
-                      class="elementor-element elementor-element-1b23a3c elementor-widget elementor-widget-spacer"
-                      data-id="1b23a3c"
-                      data-element_type="widget"
-                      data-widget_type="spacer.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <div class="elementor-spacer">
-                          <div class="elementor-spacer-inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-907445d elementor-absolute e-transform e-transform elementor-widget elementor-widget-jkit_button"
-                      data-id="907445d"
-                      data-element_type="widget"
-                      data-settings='{"_position":"absolute","_transform_rotateZ_effect":{"unit":"px","size":"-50","sizes":[]},"_transform_rotateZ_effect_hover":{"unit":"px","size":"0","sizes":[]},"_transform_rotateZ_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_mobile":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_mobile":{"unit":"deg","size":"","sizes":[]}}'
-                      data-widget_type="jkit_button.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <div
-                          class="jeg-elementor-kit jkit-button icon-position-after jeg_module_689_3_67deba51df0ca"
-                        >
-                          <a href="#" class="jkit-button-wrapper"
-                            ><i
-                              aria-hidden="true"
-                              class="jki jki-right-arrow-light"
-                            ></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-0129711 e-con-full e-flex e-con e-child"
-                    data-id="0129711"
-                    data-element_type="container"
-                  >
-                    <div
-                      class="elementor-element elementor-element-e691f0e elementor-widget elementor-widget-heading"
-                      data-id="e691f0e"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          packaging design for Kopiku
-                        </h2>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-339c95a e-con-full e-flex e-con e-child"
-                      data-id="339c95a"
-                      data-element_type="container"
-                    >
-                      <div
-                        class="elementor-element elementor-element-4766c52 elementor-widget elementor-widget-heading"
-                        data-id="4766c52"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Packaging
-                          </h2>
-                        </div>
-                      </div>
-                      <div
-                        class="elementor-element elementor-element-f736670 elementor-widget elementor-widget-heading"
-                        data-id="f736670"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Design
-                          </h2>
-                        </div>
-                      </div>
-                      <div
-                        class="elementor-element elementor-element-83f1fc6 elementor-widget elementor-widget-heading"
-                        data-id="83f1fc6"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Marketing
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-86bc9de e-flex e-con-boxed e-con e-child"
-              data-id="86bc9de"
-              data-element_type="container"
-            >
-              <div class="e-con-inner">
-                <div
-                  class="elementor-element elementor-element-87538b0 e-con-full e-flex e-con e-child"
-                  data-id="87538b0"
-                  data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-1ba73e3 e-con-full e-flex e-con e-child"
-                    data-id="1ba73e3"
-                    data-element_type="container"
-                    data-settings='{"background_background":"classic"}'
-                  >
-                    <div
-                      class="elementor-element elementor-element-5fd58f8 elementor-widget elementor-widget-spacer"
-                      data-id="5fd58f8"
-                      data-element_type="widget"
-                      data-widget_type="spacer.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <div class="elementor-spacer">
-                          <div class="elementor-spacer-inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-9bdc99b elementor-absolute e-transform e-transform elementor-widget elementor-widget-jkit_button"
-                      data-id="9bdc99b"
-                      data-element_type="widget"
-                      data-settings='{"_position":"absolute","_transform_rotateZ_effect":{"unit":"px","size":"-50","sizes":[]},"_transform_rotateZ_effect_hover":{"unit":"px","size":"0","sizes":[]},"_transform_rotateZ_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_mobile":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_mobile":{"unit":"deg","size":"","sizes":[]}}'
-                      data-widget_type="jkit_button.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <div
-                          class="jeg-elementor-kit jkit-button icon-position-after jeg_module_689_4_67deba51df505"
-                        >
-                          <a href="#" class="jkit-button-wrapper"
-                            ><i
-                              aria-hidden="true"
-                              class="jki jki-right-arrow-light"
-                            ></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-4c8b1f1 e-con-full e-flex e-con e-child"
-                    data-id="4c8b1f1"
-                    data-element_type="container"
-                  >
-                    <div
-                      class="elementor-element elementor-element-e822aa7 elementor-widget elementor-widget-heading"
-                      data-id="e822aa7"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          digital product for KronyosApp
-                        </h2>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-907b1e6 e-con-full e-flex e-con e-child"
-                      data-id="907b1e6"
-                      data-element_type="container"
-                    >
-                      <div
-                        class="elementor-element elementor-element-63d4d23 elementor-widget elementor-widget-heading"
-                        data-id="63d4d23"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Digital
-                          </h2>
-                        </div>
-                      </div>
-                      <div
-                        class="elementor-element elementor-element-fa56cdb elementor-widget elementor-widget-heading"
-                        data-id="fa56cdb"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Product
-                          </h2>
-                        </div>
-                      </div>
-                      <div
-                        class="elementor-element elementor-element-23bba5f elementor-widget elementor-widget-heading"
-                        data-id="23bba5f"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Marketing
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="elementor-element elementor-element-b9b85ac e-con-full e-flex e-con e-child"
-                  data-id="b9b85ac"
-                  data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-708e95d e-con-full e-flex e-con e-child"
-                    data-id="708e95d"
-                    data-element_type="container"
-                    data-settings='{"background_background":"classic"}'
-                  >
-                    <div
-                      class="elementor-element elementor-element-dd18a42 elementor-widget elementor-widget-spacer"
-                      data-id="dd18a42"
-                      data-element_type="widget"
-                      data-widget_type="spacer.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <div class="elementor-spacer">
-                          <div class="elementor-spacer-inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-7694dbb elementor-absolute e-transform e-transform elementor-widget elementor-widget-jkit_button"
-                      data-id="7694dbb"
-                      data-element_type="widget"
-                      data-settings='{"_position":"absolute","_transform_rotateZ_effect":{"unit":"px","size":"-50","sizes":[]},"_transform_rotateZ_effect_hover":{"unit":"px","size":"0","sizes":[]},"_transform_rotateZ_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_mobile":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_mobile":{"unit":"deg","size":"","sizes":[]}}'
-                      data-widget_type="jkit_button.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <div
-                          class="jeg-elementor-kit jkit-button icon-position-after jeg_module_689_5_67deba51df943"
-                        >
-                          <a href="#" class="jkit-button-wrapper"
-                            ><i
-                              aria-hidden="true"
-                              class="jki jki-right-arrow-light"
-                            ></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-09e0934 e-con-full e-flex e-con e-child"
-                    data-id="09e0934"
-                    data-element_type="container"
-                  >
-                    <div
-                      class="elementor-element elementor-element-6684323 elementor-widget elementor-widget-heading"
-                      data-id="6684323"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          Mockup Design For Eagent
-                        </h2>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-84679bd e-con-full e-flex e-con e-child"
-                      data-id="84679bd"
-                      data-element_type="container"
-                    >
-                      <div
-                        class="elementor-element elementor-element-9ebacef elementor-widget elementor-widget-heading"
-                        data-id="9ebacef"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Mockup
-                          </h2>
-                        </div>
-                      </div>
-                      <div
-                        class="elementor-element elementor-element-93e1831 elementor-widget elementor-widget-heading"
-                        data-id="93e1831"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Branding
-                          </h2>
-                        </div>
-                      </div>
-                      <div
-                        class="elementor-element elementor-element-6349aed elementor-widget elementor-widget-heading"
-                        data-id="6349aed"
-                        data-element_type="widget"
-                        data-widget_type="heading.default"
-                      >
-                        <div class="elementor-widget-container">
-                          <h2
-                            class="elementor-heading-title elementor-size-default"
-                          >
-                            Marketing
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-e4566fe e-con-full e-flex e-con e-child"
-              data-id="e4566fe"
-              data-element_type="container"
-            >
-              <div
-                class="elementor-element elementor-element-5d1f759 e-con-full e-flex e-con e-child"
-                data-id="5d1f759"
-                data-element_type="container"
-              >
-                <div
-                  class="elementor-element elementor-element-be0f700 e-con-full e-flex e-con e-child"
-                  data-id="be0f700"
-                  data-element_type="container"
-                  data-settings='{"background_background":"classic"}'
-                >
-                  <div
-                    class="elementor-element elementor-element-8c5e06d elementor-widget elementor-widget-spacer"
-                    data-id="8c5e06d"
-                    data-element_type="widget"
-                    data-widget_type="spacer.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <div class="elementor-spacer">
-                        <div class="elementor-spacer-inner"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-d6651dc elementor-absolute e-transform e-transform elementor-widget elementor-widget-jkit_button"
-                    data-id="d6651dc"
-                    data-element_type="widget"
-                    data-settings='{"_position":"absolute","_transform_rotateZ_effect":{"unit":"px","size":"-50","sizes":[]},"_transform_rotateZ_effect_hover":{"unit":"px","size":"0","sizes":[]},"_transform_rotateZ_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_mobile":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_mobile":{"unit":"deg","size":"","sizes":[]}}'
-                    data-widget_type="jkit_button.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <div
-                        class="jeg-elementor-kit jkit-button icon-position-after jeg_module_689_6_67deba51dfd3c"
-                      >
-                        <a href="#" class="jkit-button-wrapper"
-                          ><i
-                            aria-hidden="true"
-                            class="jki jki-right-arrow-light"
-                          ></i
-                        ></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="elementor-element elementor-element-3f631ac e-con-full e-flex e-con e-child"
-                  data-id="3f631ac"
-                  data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-36492db elementor-widget elementor-widget-heading"
-                    data-id="36492db"
-                    data-element_type="widget"
-                    data-widget_type="heading.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <h2
-                        class="elementor-heading-title elementor-size-default"
-                      >
-                        Social Media Marketing for Stride
-                      </h2>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-d24adfb e-con-full e-flex e-con e-child"
-                    data-id="d24adfb"
-                    data-element_type="container"
-                  >
-                    <div
-                      class="elementor-element elementor-element-953126e elementor-widget elementor-widget-heading"
-                      data-id="953126e"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          Social Media
-                        </h2>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-8d6e079 elementor-widget elementor-widget-heading"
-                      data-id="8d6e079"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          Marketing
-                        </h2>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-4f8648a elementor-widget elementor-widget-heading"
-                      data-id="4f8648a"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          Boost
-                        </h2>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-ad52c8d e-con-full e-flex e-con e-child"
-                data-id="ad52c8d"
-                data-element_type="container"
-              >
-                <div
-                  class="elementor-element elementor-element-61a6270 e-con-full e-flex e-con e-child"
-                  data-id="61a6270"
-                  data-element_type="container"
-                  data-settings='{"background_background":"classic"}'
-                >
-                  <div
-                    class="elementor-element elementor-element-4ce8930 elementor-widget elementor-widget-spacer"
-                    data-id="4ce8930"
-                    data-element_type="widget"
-                    data-widget_type="spacer.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <div class="elementor-spacer">
-                        <div class="elementor-spacer-inner"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-548f10f elementor-absolute e-transform e-transform elementor-widget elementor-widget-jkit_button"
-                    data-id="548f10f"
-                    data-element_type="widget"
-                    data-settings='{"_position":"absolute","_transform_rotateZ_effect":{"unit":"px","size":"-50","sizes":[]},"_transform_rotateZ_effect_hover":{"unit":"px","size":"0","sizes":[]},"_transform_rotateZ_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_mobile":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_hover_mobile":{"unit":"deg","size":"","sizes":[]}}'
-                    data-widget_type="jkit_button.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <div
-                        class="jeg-elementor-kit jkit-button icon-position-after jeg_module_689_7_67deba51e012e"
-                      >
-                        <a href="#" class="jkit-button-wrapper"
-                          ><i
-                            aria-hidden="true"
-                            class="jki jki-right-arrow-light"
-                          ></i
-                        ></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="elementor-element elementor-element-2b47b06 e-con-full e-flex e-con e-child"
-                  data-id="2b47b06"
-                  data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-56be3a5 elementor-widget elementor-widget-heading"
-                    data-id="56be3a5"
-                    data-element_type="widget"
-                    data-widget_type="heading.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <h2
-                        class="elementor-heading-title elementor-size-default"
-                      >
-                        Web Development For Foodzy &amp; Co
-                      </h2>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-40761e7 e-con-full e-flex e-con e-child"
-                    data-id="40761e7"
-                    data-element_type="container"
-                  >
-                    <div
-                      class="elementor-element elementor-element-2738f46 elementor-widget elementor-widget-heading"
-                      data-id="2738f46"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          Website
-                        </h2>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-fdb15b3 elementor-widget elementor-widget-heading"
-                      data-id="fdb15b3"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          Development
-                        </h2>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-13bcfb9 elementor-widget elementor-widget-heading"
-                      data-id="13bcfb9"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          UI/UX
-                        </h2>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-        <!-- <div
-          class="elementor-element elementor-element-cc4b8b5 e-flex e-con-boxed e-con e-child"
-          data-id="cc4b8b5"
-          data-element_type="container"
-           >
-          <div class="e-con-inner">
-            <div
-              class="elementor-element elementor-element-d6a8b0b e-con-full e-flex e-con e-child"
-              data-id="d6a8b0b"
-              data-element_type="container"
-            >
-              <div
-                class="elementor-element elementor-element-52e74a9 jkit-sticky-element--enabled e-flex e-con-boxed jkit-sticky-element-on--down jkit-sticky-position--sticky e-con e-child"
-                data-id="52e74a9"
-                data-element_type="container"
-                data-settings='{"background_background":"classic","jkit_sticky_top_position":{"unit":"px","size":"50","sizes":[]},"jkit_sticky_device":"desktop"}'
-              >
-                <div class="e-con-inner">
-                  <div
-                    class="elementor-element elementor-element-63ab91c elementor-widget elementor-widget-heading"
-                    data-id="63ab91c"
-                    data-element_type="widget"
-                    data-widget_type="heading.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <h2
-                        class="elementor-heading-title elementor-size-default"
-                      >
-                        Our Process
-                      </h2>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-063b1c6 elementor-widget elementor-widget-heading"
-                    data-id="063b1c6"
-                    data-element_type="widget"
-                    data-widget_type="heading.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <h2
-                        class="elementor-heading-title elementor-size-default"
-                      >
-                        Simple Steps How we Work
-                      </h2>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-26c2308 elementor-widget elementor-widget-text-editor"
-                    data-id="26c2308"
-                    data-element_type="widget"
-                    data-widget_type="text-editor.default"
-                  >
-                    <div class="elementor-widget-container">
-                      Below is a breakdown of the main processes in our digital
-                      marketing agency, along with their descriptions.
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-93faef4 e-con-full e-flex e-con e-child"
-                    data-id="93faef4"
-                    data-element_type="container"
-                  >
-                    <div
-                      class="elementor-element elementor-element-ad284bb elementor-widget elementor-widget-jkit_video_button"
-                      data-id="ad284bb"
-                      data-element_type="widget"
-                      data-widget_type="jkit_video_button.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <div
-                          class="jeg-elementor-kit jkit-video-button jeg_module_689_8_67deba51e12c1"
-                          data-autoplay="0"
-                          data-loop="0"
-                          data-controls="0"
-                          data-type="youtube"
-                          data-mute="0"
-                          data-start="0"
-                          data-end="0"
-                        >
-                          <a
-                            href="https://www.youtube.com/watch?v=MLpWrANjFbI"
-                            class="jkit-video-popup-btn glow-enable"
-                            aria-label="video-button"
-                            ><span class="icon-position-before"
-                              ><i
-                                aria-hidden="true"
-                                class="jki jki-play-button"
-                              ></i></span
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-6e9ff8a elementor-widget elementor-widget-heading"
-                      data-id="6e9ff8a"
-                      data-element_type="widget"
-                      data-widget_type="heading.default"
-                    >
-                      <div class="elementor-widget-container">
-                        <h2
-                          class="elementor-heading-title elementor-size-default"
-                        >
-                          Watch Video
-                        </h2>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-74d5eb6 e-flex e-con-boxed e-con e-child"
-              data-id="74d5eb6"
-              data-element_type="container"
-            >
-              <div class="e-con-inner">
-                <div
-                  class="elementor-element elementor-element-4a06a4a e-flex e-con-boxed e-con e-child"
-                  data-id="4a06a4a"
-                  data-element_type="container"
-                >
-                  <div class="e-con-inner">
-                    <div
-                      class="elementor-element elementor-element-74eeea9 e-flex e-con-boxed e-con e-child"
-                      data-id="74eeea9"
-                      data-element_type="container"
-                    >
-                      <div class="e-con-inner">
-                        <div
-                          class="elementor-element elementor-element-bc8cdb0 jkit-equal-height-disable elementor-widget elementor-widget-jkit_icon_box"
-                          data-id="bc8cdb0"
-                          data-element_type="widget"
-                          data-widget_type="jkit_icon_box.default"
-                        >
-                          <div class="elementor-widget-container">
-                            <div
-                              class="jeg-elementor-kit jkit-icon-box icon-position-top elementor-animation- jeg_module_689_9_67deba51e2f91"
-                            >
-                              <div
-                                class="jkit-icon-box-wrapper hover-from-left"
-                              >
-                                <div class="icon-box icon-box-body">
-                                  <h2 class="title">01.</h2>
-                                  <p class="icon-box-description">
-                                    Initial Consultation &amp; Discovery
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-541add3 e-flex e-con-boxed e-con e-child"
-                      data-id="541add3"
-                      data-element_type="container"
-                    >
-                      <div class="e-con-inner">
-                        <div
-                          class="elementor-element elementor-element-3d53b3a jkit-equal-height-disable elementor-widget elementor-widget-jkit_icon_box"
-                          data-id="3d53b3a"
-                          data-element_type="widget"
-                          data-widget_type="jkit_icon_box.default"
-                        >
-                          <div class="elementor-widget-container">
-                            <div
-                              class="jeg-elementor-kit jkit-icon-box icon-position-top elementor-animation- jeg_module_689_10_67deba51e3508"
-                            >
-                              <div
-                                class="jkit-icon-box-wrapper hover-from-left"
-                              >
-                                <div class="icon-box icon-box-body">
-                                  <h2 class="title">02.</h2>
-                                  <p class="icon-box-description">
-                                    Strategy Development
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="elementor-element elementor-element-e03f6b1 e-flex e-con-boxed e-con e-child"
-                  data-id="e03f6b1"
-                  data-element_type="container"
-                >
-                  <div class="e-con-inner">
-                    <div
-                      class="elementor-element elementor-element-e04e667 e-flex e-con-boxed e-con e-child"
-                      data-id="e04e667"
-                      data-element_type="container"
-                    >
-                      <div class="e-con-inner">
-                        <div
-                          class="elementor-element elementor-element-67da3ac jkit-equal-height-disable elementor-widget elementor-widget-jkit_icon_box"
-                          data-id="67da3ac"
-                          data-element_type="widget"
-                          data-widget_type="jkit_icon_box.default"
-                        >
-                          <div class="elementor-widget-container">
-                            <div
-                              class="jeg-elementor-kit jkit-icon-box icon-position-top elementor-animation- jeg_module_689_11_67deba51e39bd"
-                            >
-                              <div
-                                class="jkit-icon-box-wrapper hover-from-left"
-                              >
-                                <div class="icon-box icon-box-body">
-                                  <h2 class="title">03.</h2>
-                                  <p class="icon-box-description">
-                                    Implementation &amp; Execution
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="elementor-element elementor-element-b044666 e-flex e-con-boxed e-con e-child"
-                      data-id="b044666"
-                      data-element_type="container"
-                    >
-                      <div class="e-con-inner">
-                        <div
-                          class="elementor-element elementor-element-380ee5d jkit-equal-height-disable elementor-widget elementor-widget-jkit_icon_box"
-                          data-id="380ee5d"
-                          data-element_type="widget"
-                          data-widget_type="jkit_icon_box.default"
-                        >
-                          <div class="elementor-widget-container">
-                            <div
-                              class="jeg-elementor-kit jkit-icon-box icon-position-top elementor-animation- jeg_module_689_12_67deba51e3e45"
-                            >
-                              <div
-                                class="jkit-icon-box-wrapper hover-from-left"
-                              >
-                                <div class="icon-box icon-box-body">
-                                  <h2 class="title">04.</h2>
-                                  <p class="icon-box-description">
-                                    Monitoring &amp; Optimization
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div
-          class="elementor-element elementor-element-9c303a1 e-flex e-con-boxed e-con e-parent"
-          data-id="9c303a1"
-          data-element_type="container"
-          >
-          <div class="e-con-inner">
-            <div
-              class="elementor-element elementor-element-1d7e6c5 e-flex e-con-boxed e-con e-child"
-              data-id="1d7e6c5"
-              data-element_type="container"
-              data-settings='{"background_background":"gradient"}'
-            >
-              <div class="e-con-inner">
-                <div
-                  class="elementor-element elementor-element-aeca7a5 e-con-full e-flex e-con e-child"
-                  data-id="aeca7a5"
-                  data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-280a493 elementor-widget elementor-widget-heading"
-                    data-id="280a493"
-                    data-element_type="widget"
-                    data-widget_type="heading.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <h2
-                        class="elementor-heading-title elementor-size-default"
-                      >
-                        Contact Us
-                      </h2>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="elementor-element elementor-element-649fd3c e-con-full e-flex e-con e-child"
-                  data-id="649fd3c"
-                  data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-a7ff0bd elementor-widget elementor-widget-heading"
-                    data-id="a7ff0bd"
-                    data-element_type="widget"
-                    data-widget_type="heading.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <h2
-                        class="elementor-heading-title elementor-size-default"
-                      >
-                        Let's create the best
-                      </h2>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-9ac3eeb e-transform elementor-widget elementor-widget-heading"
-                    data-id="9ac3eeb"
-                    data-element_type="widget"
-                    data-settings='{"_transform_rotateZ_effect":{"unit":"px","size":"-3","sizes":[]},"_transform_rotateZ_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_mobile":{"unit":"deg","size":"","sizes":[]}}'
-                    data-widget_type="heading.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <h2
-                        class="elementor-heading-title elementor-size-default"
-                      >
-                        Experience
-                      </h2>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="elementor-element elementor-element-b44d511 e-con-full e-flex e-con e-child"
-                  data-id="b44d511"
-                  data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-dd918de elementor-widget elementor-widget-heading"
-                    data-id="dd918de"
-                    data-element_type="widget"
-                    data-widget_type="heading.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <h2
-                        class="elementor-heading-title elementor-size-default"
-                      >
-                        for your business with us
-                      </h2>
-                    </div>
-                  </div>
-                  <div
-                    class="elementor-element elementor-element-e9c45d0 e-transform elementor-widget elementor-widget-jkit_button"
-                    data-id="e9c45d0"
-                    data-element_type="widget"
-                    data-settings='{"_transform_scale_effect_hover":{"unit":"px","size":"0.9","sizes":[]},"_transform_scale_effect_hover_tablet":{"unit":"px","size":"","sizes":[]},"_transform_scale_effect_hover_mobile":{"unit":"px","size":"","sizes":[]}}'
-                    data-widget_type="jkit_button.default"
-                  >
-                    <div class="elementor-widget-container">
-                      <div
-                        class="jeg-elementor-kit jkit-button icon-position-after jeg_module_689_13_67deba51e4283"
-                      >
-                        <a href="#" class="jkit-button-wrapper"
-                          >Let&#039;s Talk<svg
-                            viewBox="0 0 448 512"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"
-                            ></path></svg
-                        ></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
       <footer itemscope="itemscope" itemtype="https://schema.org/WPFooter">
         <style>
