@@ -3149,20 +3149,56 @@
               <section id="branding" class="portfolio-section active">
                   <div class="masonry-grid">
                     <div class="portfolio-item">
-                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/IMG_9885_lqhjxd.jpg" alt="Creative design example">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856480/IMG_20250423_112201_sr3mzi.jpg" alt="Creative design example">
                   </div>
                   <div class="portfolio-item">
-                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/mrmalayali.creatives-20250322-0007_tuyiys.jpg" alt="Creative design example">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856478/IMG_20250423_113207_rjpdml.jpg" alt="Creative design example">
                   </div>
                   <div class="portfolio-item">
-                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/mrmalayali.creatives-20250322-0008_guxnc1.jpg" alt="Creative design example">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856479/IMG_20250423_113309_hu0mdf.jpg" alt="Creative design example">
                   </div>
                   <div class="portfolio-item">
-                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/IMG_9886_suwrqb.jpg" alt="Creative design example">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856479/IMG_20250423_113504_p5ot8g.jpg" alt="Creative design example">
                   </div>
                   <div class="portfolio-item">
-                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745154269/IMG_9891_fr6yzh.jpg" alt="Creative design example">
+                      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856479/IMG_20250423_113544_hnozdr.jpg" alt="Creative design example">
                   </div>
+                  <div class="portfolio-item">
+                    <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856480/IMG_20250423_114303_oux6yn.jpg" alt="Creative design example">
+                </div>
+                <div class="portfolio-item">
+                  <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856482/IMG_20250423_114343_ilfn1m.jpg" alt="Creative design example">
+              </div>
+              <div class="portfolio-item">
+                <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856482/IMG_20250423_114403_xmfnwk.jpg" alt="Creative design example">
+            </div>
+            <div class="portfolio-item">
+              <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856480/IMG_20250423_114503_m2cr9g.jpg" alt="Creative design example">
+          </div>
+          <div class="portfolio-item">
+            <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856481/IMG_20250423_114551_lqlzyj.jpg" alt="Creative design example">
+        </div>
+        <div class="portfolio-item">
+          <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856482/IMG_20250423_114613_izrgno.jpg" alt="Creative design example">
+      </div>
+      <div class="portfolio-item">
+        <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856482/IMG_20250423_114631_vtwhiy.jpg" alt="Creative design example">
+    </div>
+    <div class="portfolio-item">
+      <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856482/mrmalayali.creatives-20250423-0001_bbyweh.jpg" alt="Creative design example">
+  </div>
+  <div class="portfolio-item">
+    <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856481/mrmalayali.in-20250423-0001_a2ybuh.jpg" alt="Creative design example">
+</div>
+<div class="portfolio-item">
+  <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856483/mrmalayali.in-20250423-0002_rid3kj.jpg" alt="Creative design example">
+</div>
+<div class="portfolio-item">
+  <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856483/mrmalayali.in-20250423-0003_whk8ut.jpg" alt="Creative design example">
+</div>
+<div class="portfolio-item">
+  <img src="https://res.cloudinary.com/dne0emieh/image/upload/v1745856483/mrmalayali.in-20250423-0014_pztqei.jpg" alt="Creative design example">
+</div>
                   </div>
               </section>
           
@@ -3391,6 +3427,63 @@
             </div>
                   </div>
               </section>
+
+              <style>
+                /* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 1200px;
+    max-height: 90vh;
+    object-fit: contain;
+    animation: zoomIn 0.3s;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #bbb;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.9);}
+    to {transform: scale(1);}
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+    }
+}
+              </style>
           
               <!-- Leads Results Section -->
               <section id="leads" class="portfolio-section">
@@ -3418,6 +3511,119 @@
                       </div>
                   </div>
               </section>
+
+              <!-- The Modal -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get all navigation items and sections
+    const navItems = document.querySelectorAll('.main-nav li');
+    const sections = document.querySelectorAll('.portfolio-section');
+    const indicator = document.querySelector('.nav-indicator');
+    
+    // Modal functionality
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.getElementsByClassName("close")[0];
+    
+    // Only apply click events to images in the Leads Results section
+    const leadsItems = document.querySelectorAll('#leads .portfolio-item img');
+    
+    leadsItems.forEach(item => {
+        item.addEventListener('click', function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        });
+    });
+    
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+    
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    
+    // Set initial indicator position
+    const activeItem = document.querySelector('.main-nav li.active');
+    if (activeItem && indicator) {
+        updateIndicator(activeItem);
+    }
+    
+    // Add click event to each navigation item
+    navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all items and sections
+            navItems.forEach(nav => nav.classList.remove('active'));
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Add active class to clicked item
+            this.classList.add('active');
+            
+            // Update the indicator position
+            updateIndicator(this);
+            
+            // Get the section id from data attribute
+            const sectionId = this.getAttribute('data-section');
+            
+            // Add active class to corresponding section with animation
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                // First set opacity to 0 and transform
+                targetSection.style.opacity = '0';
+                targetSection.style.transform = 'translateY(20px)';
+                targetSection.classList.add('active');
+                
+                // Force reflow to ensure the animation works
+                void targetSection.offsetWidth;
+                
+                // Then animate to full opacity and position
+                targetSection.style.opacity = '1';
+                targetSection.style.transform = 'translateY(0)';
+            }
+        });
+    });
+    
+    // Portfolio items click effect
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    portfolioItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Simple animation effect
+            this.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 300);
+        });
+    });
+    
+    // Function to update the indicator position
+    function updateIndicator(item) {
+        if (!indicator) return;
+        
+        const itemRect = item.getBoundingClientRect();
+        const navRect = document.querySelector('.main-nav ul').getBoundingClientRect();
+        
+        indicator.style.width = `${itemRect.width}px`;
+        indicator.style.left = `${itemRect.left - navRect.left}px`;
+    }
+    
+    // Update indicator on window resize
+    window.addEventListener('resize', function() {
+        const activeItem = document.querySelector('.main-nav li.active');
+        if (activeItem && indicator) {
+            updateIndicator(activeItem);
+        }
+    });
+});
+</script>
           </main>
           
           <script>
