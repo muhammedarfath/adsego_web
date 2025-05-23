@@ -13,10 +13,7 @@
     />
     <link rel="profile" href="../../../gmpg.org/xfn/11.html" />
     <link rel="pingback" href="../xmlrpc.php" />
-    <title>
-      Services &#8211; Zynex &#8211; Digital Marketing Agency Elementor Template
-      Kit
-    </title>
+    <title>Adsego Digital Marketing</title>
     <meta name="robots" content="max-image-preview:large" />
     <style>
       img:is([sizes="auto" i], [sizes^="auto," i]) {
@@ -2637,7 +2634,11 @@
                       </button>
                     </div>
                     <div style="padding: 20px">
-                      <form id="contactForm">
+                      <form
+                        id="contactForm"
+                        method="POST"
+                        action="https://script.google.com/macros/s/AKfycby20CC0mZEvsHgaz4bmc5TXSGvpn4vqrEn4tUOY8IsTp7MiPjUhPoLX39UcvtmTITfAsQ/exec"
+                      >
                         <div style="margin-bottom: 20px">
                           <label
                             for="name"
@@ -2652,6 +2653,7 @@
                           <input
                             type="text"
                             id="name"
+                            name="name"
                             required
                             style="
                               width: 100%;
@@ -2663,6 +2665,7 @@
                               box-sizing: border-box;
                               background: white;
                               outline: none;
+                              color: #333;
                             "
                             onfocus="this.style.borderColor='black'"
                             onblur="this.style.borderColor='#ddd'"
@@ -2682,6 +2685,7 @@
                           <input
                             type="tel"
                             id="phone"
+                            name="phone"
                             required
                             style="
                               width: 100%;
@@ -2693,6 +2697,7 @@
                               box-sizing: border-box;
                               background: white;
                               outline: none;
+                              color: #333;
                             "
                             onfocus="this.style.borderColor='black'"
                             onblur="this.style.borderColor='#ddd'"
@@ -2712,6 +2717,7 @@
                           <input
                             type="email"
                             id="email"
+                            name="email"
                             required
                             style="
                               width: 100%;
@@ -2723,6 +2729,7 @@
                               box-sizing: border-box;
                               background: white;
                               outline: none;
+                              color: #333;
                             "
                             onfocus="this.style.borderColor='black'"
                             onblur="this.style.borderColor='#ddd'"
@@ -2741,6 +2748,7 @@
                           >
                           <textarea
                             id="project"
+                            name="message"
                             required
                             style="
                               width: 100%;
@@ -2754,12 +2762,13 @@
                               resize: vertical;
                               background: white;
                               outline: none;
+                              color: #333;
                             "
                             onfocus="this.style.borderColor='black'"
                             onblur="this.style.borderColor='#ddd'"
                           ></textarea>
                         </div>
-                        <a
+                        <button
                           type="submit"
                           style="
                             background-color: #000000;
@@ -2771,18 +2780,16 @@
                             cursor: pointer;
                             transition: background-color 0.2s;
                             width: 100%;
-                            display: inline-block;
-                            text-align: center;
-                            text-decoration: none;
                           "
                         >
                           Submit
-                        </a>
+                        </button>
                       </form>
                     </div>
                   </div>
                 </div>
 
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
                   // Get modal elements
                   const modal = document.getElementById("contactModal");
@@ -2822,16 +2829,49 @@
                     }
                   });
 
-                  // Form submission
-                  contactForm.addEventListener("submit", function (e) {
-                    e.preventDefault();
-                    // Here you would typically send the form data to your server
-                    alert(
-                      "Form submitted! In a real application, this would send your data to the server."
-                    );
-                    closeModal();
-                    contactForm.reset();
-                  });
+                  // Form submission with AJAX
+                  document
+                    .getElementById("contactForm")
+                    .addEventListener("submit", function (e) {
+                      e.preventDefault();
+
+                      const form = e.target;
+                      const submitBtn = form.querySelector(
+                        'button[type="submit"]'
+                      );
+                      const originalBtnText = submitBtn.textContent;
+
+                      submitBtn.textContent = "Sending...";
+                      submitBtn.disabled = true;
+
+                      const formData = new URLSearchParams(new FormData(form));
+
+                      fetch(
+                        "https://script.google.com/macros/s/AKfycby20CC0mZEvsHgaz4bmc5TXSGvpn4vqrEn4tUOY8IsTp7MiPjUhPoLX39UcvtmTITfAsQ/exec",
+                        {
+                          method: "POST",
+                          body: formData,
+                          mode: "no-cors",
+                          headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                          },
+                        }
+                      )
+                        .then((response) => {
+                          console.log(response);
+                          alert("Message sent successfully!");
+                          form.reset();
+                          closeModal();
+                        })
+                        .catch((error) => {
+                          console.error("Error:", error);
+                          alert("Failed to send message. Please try again.");
+                        })
+                        .finally(() => {
+                          submitBtn.textContent = originalBtnText;
+                          submitBtn.disabled = false;
+                        });
+                    });
 
                   // Add hover effect for close button
                   closeBtn.addEventListener("mouseover", function () {
@@ -2850,17 +2890,6 @@
                     input.addEventListener("blur", function () {
                       this.style.borderColor = "#ddd";
                     });
-                  });
-
-                  // Add hover effect for submit button
-                  const submitBtn = document.querySelector(
-                    'button[type="submit"]'
-                  );
-                  submitBtn.addEventListener("mouseover", function () {
-                    this.style.backgroundColor = "#3a7bc8";
-                  });
-                  submitBtn.addEventListener("mouseout", function () {
-                    this.style.backgroundColor = "#4a90e2";
                   });
                 </script>
               </div>
@@ -4502,8 +4531,8 @@
                         data-element_type="widget"
                         data-widget_type="image.default"
                       >
-                        <!-- <div class="elementor-widget-container">
-                          <a href="">
+                        <div class="elementor-widget-container">
+                          <a href="./index.html">
                             <img
                               width="2181"
                               height="924"
@@ -4514,7 +4543,7 @@
                               sizes="(max-width: 2181px) 100vw, 2181px"
                             />
                           </a>
-                        </div> -->
+                        </div>
                       </div>
                       <div
                         class="elementor-element elementor-element-e70cf6a elementor-widget elementor-widget-text-editor"
@@ -4651,8 +4680,7 @@
                                   </svg>
                                 </span>
                                 <span class="elementor-icon-list-text"
-                                  >adsegofuture@gmail.com
-                                  </span
+                                  >adsegofuture@gmail.com</span
                                 >
                               </a>
                             </li>
@@ -4673,7 +4701,20 @@
                                 <span class="elementor-icon-list-text"
                                   >+91 9074955688</span
                                 >
+                                
                               </a>
+                              
+                            </li>
+                                                        <li class="elementor-icon-list-item" style="margin-left: 20px;">
+                              <a href="#">
+                                <span class="elementor-icon-list-icon">
+                                </span>
+                                <span class="elementor-icon-list-text" 
+                                  >+91 9074955688</span
+                                >
+                                
+                              </a>
+                              
                             </li>
                           </ul>
                         </div>
@@ -4710,45 +4751,45 @@
                         data-element_type="widget"
                         data-widget_type="icon-list.default"
                       >
-                      <div class="elementor-widget-container">
-                        <ul class="elementor-icon-list-items">
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Search Engine Optimization</span
-                              >
-                            </a>
-                          </li>
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Video Ads Production</span
-                              >
-                            </a>
-                          </li>
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Website Development</span
-                              >
-                            </a>
-                          </li>
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Brand Strategy</span
-                              >
-                            </a>
-                          </li>
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Social Media Marketing</span
-                              >
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+                        <div class="elementor-widget-container">
+                          <ul class="elementor-icon-list-items">
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Search Engine Optimization</span
+                                >
+                              </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Video Ads Production</span
+                                >
+                              </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Website Development</span
+                                >
+                              </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Brand Strategy</span
+                                >
+                              </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Social Media Marketing</span
+                                >
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                     <div
@@ -4779,7 +4820,7 @@
                         <div class="elementor-widget-container">
                           <ul class="elementor-icon-list-items">
                             <li class="elementor-icon-list-item">
-                              <a href="#">
+                              <a href="https://www.facebook.com/profile.php?id=61560336006825">
                                 <span class="elementor-icon-list-icon">
                                   <i
                                     aria-hidden="true"
@@ -4792,7 +4833,7 @@
                               </a>
                             </li>
                             <li class="elementor-icon-list-item">
-                              <a href="#">
+                              <a href="https://www.instagram.com/adsegofuture/">
                                 <span class="elementor-icon-list-icon">
                                   <i
                                     aria-hidden="true"
@@ -4805,28 +4846,15 @@
                               </a>
                             </li>
                             <li class="elementor-icon-list-item">
-                              <a href="#">
+                              <a href="https://www.linkedin.com/company/adsego-future/posts/?feedView=all">
                                 <span class="elementor-icon-list-icon">
                                   <i
                                     aria-hidden="true"
-                                    class="jki jki-twitter"
+                                    class="jki jki-linkedin"
                                   ></i>
                                 </span>
                                 <span class="elementor-icon-list-text"
-                                  >Twitter</span
-                                >
-                              </a>
-                            </li>
-                            <li class="elementor-icon-list-item">
-                              <a href="#">
-                                <span class="elementor-icon-list-icon">
-                                  <i
-                                    aria-hidden="true"
-                                    class="jki jki-youtube-v-light"
-                                  ></i>
-                                </span>
-                                <span class="elementor-icon-list-text"
-                                  >Youtube</span
+                                  >LinkedIn</span
                                 >
                               </a>
                             </li>
@@ -4854,7 +4882,7 @@
                     data-widget_type="text-editor.default"
                   >
                     <div class="elementor-widget-container">
-                      Copyright © 2025 All rights reserved.
+                      Copyright © 2024 All rights reserved.
                     </div>
                   </div>
                 </div>
@@ -4862,15 +4890,7 @@
                   class="elementor-element elementor-element-406e082 e-con-full e-flex e-con e-child"
                   data-id="406e082"
                   data-element_type="container"
-                >
-                  <div
-                    class="elementor-element elementor-element-cded223 elementor-widget elementor-widget-text-editor"
-                    data-id="cded223"
-                    data-element_type="widget"
-                    data-widget_type="text-editor.default"
-                  >
-                  </div>
-                </div>
+                ></div>
               </div>
             </div>
           </div>

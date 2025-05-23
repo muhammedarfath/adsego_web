@@ -13,10 +13,7 @@
     />
     <link rel="profile" href="../../../gmpg.org/xfn/11.html" />
     <link rel="pingback" href="../xmlrpc.php" />
-    <title>
-      About &#8211; Zynex &#8211; Digital Marketing Agency Elementor Template
-      Kit
-    </title>
+    <title>Adsego Digital Marketing</title>
     <meta name="robots" content="max-image-preview:large" />
     <style>
       img:is([sizes="auto" i], [sizes^="auto," i]) {
@@ -824,8 +821,7 @@
         }
       }
     </style>
-     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   </head>
 
   <body
@@ -2465,9 +2461,7 @@
                   data-widget_type="image.default"
                 >
                   <div class="elementor-widget-container">
-                    <a
-                      href="../index.html"
-                    >
+                    <a href="../index.html">
                       <img
                         fetchpriority="high"
                         width="2181"
@@ -2581,7 +2575,7 @@
                   data-element_type="widget"
                   data-settings='{"_transform_scale_effect_hover":{"unit":"px","size":"0.9","sizes":[]},"_transform_scale_effect_hover_tablet":{"unit":"px","size":"","sizes":[]},"_transform_scale_effect_hover_mobile":{"unit":"px","size":"","sizes":[]}}'
                   data-widget_type="jkit_button.default"
-                  >
+                >
                   <div class="elementor-widget-container">
                     <div
                       class="jeg-elementor-kit jkit-button icon-position-after jeg_module_26_1_67debc6437ca6"
@@ -2657,7 +2651,11 @@
                       </button>
                     </div>
                     <div style="padding: 20px">
-                      <form id="contactForm">
+                      <form
+                        id="contactForm"
+                        method="POST"
+                        action="https://script.google.com/macros/s/AKfycby20CC0mZEvsHgaz4bmc5TXSGvpn4vqrEn4tUOY8IsTp7MiPjUhPoLX39UcvtmTITfAsQ/exec"
+                      >
                         <div style="margin-bottom: 20px">
                           <label
                             for="name"
@@ -2672,6 +2670,7 @@
                           <input
                             type="text"
                             id="name"
+                            name="name"
                             required
                             style="
                               width: 100%;
@@ -2683,6 +2682,7 @@
                               box-sizing: border-box;
                               background: white;
                               outline: none;
+                              color: #333;
                             "
                             onfocus="this.style.borderColor='black'"
                             onblur="this.style.borderColor='#ddd'"
@@ -2702,6 +2702,7 @@
                           <input
                             type="tel"
                             id="phone"
+                            name="phone"
                             required
                             style="
                               width: 100%;
@@ -2713,6 +2714,7 @@
                               box-sizing: border-box;
                               background: white;
                               outline: none;
+                              color: #333;
                             "
                             onfocus="this.style.borderColor='black'"
                             onblur="this.style.borderColor='#ddd'"
@@ -2732,6 +2734,7 @@
                           <input
                             type="email"
                             id="email"
+                            name="email"
                             required
                             style="
                               width: 100%;
@@ -2743,6 +2746,7 @@
                               box-sizing: border-box;
                               background: white;
                               outline: none;
+                              color: #333;
                             "
                             onfocus="this.style.borderColor='black'"
                             onblur="this.style.borderColor='#ddd'"
@@ -2761,6 +2765,7 @@
                           >
                           <textarea
                             id="project"
+                            name="message"
                             required
                             style="
                               width: 100%;
@@ -2774,12 +2779,13 @@
                               resize: vertical;
                               background: white;
                               outline: none;
+                              color: #333;
                             "
                             onfocus="this.style.borderColor='black'"
                             onblur="this.style.borderColor='#ddd'"
                           ></textarea>
                         </div>
-                        <a
+                        <button
                           type="submit"
                           style="
                             background-color: #000000;
@@ -2791,18 +2797,16 @@
                             cursor: pointer;
                             transition: background-color 0.2s;
                             width: 100%;
-                            display: inline-block;
-                            text-align: center;
-                            text-decoration: none;
                           "
                         >
                           Submit
-                        </a>
+                        </button>
                       </form>
                     </div>
                   </div>
                 </div>
 
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
                   // Get modal elements
                   const modal = document.getElementById("contactModal");
@@ -2842,16 +2846,49 @@
                     }
                   });
 
-                  // Form submission
-                  contactForm.addEventListener("submit", function (e) {
-                    e.preventDefault();
-                    // Here you would typically send the form data to your server
-                    alert(
-                      "Form submitted! In a real application, this would send your data to the server."
-                    );
-                    closeModal();
-                    contactForm.reset();
-                  });
+                  // Form submission with AJAX
+                  document
+                    .getElementById("contactForm")
+                    .addEventListener("submit", function (e) {
+                      e.preventDefault();
+
+                      const form = e.target;
+                      const submitBtn = form.querySelector(
+                        'button[type="submit"]'
+                      );
+                      const originalBtnText = submitBtn.textContent;
+
+                      submitBtn.textContent = "Sending...";
+                      submitBtn.disabled = true;
+
+                      const formData = new URLSearchParams(new FormData(form));
+
+                      fetch(
+                        "https://script.google.com/macros/s/AKfycby20CC0mZEvsHgaz4bmc5TXSGvpn4vqrEn4tUOY8IsTp7MiPjUhPoLX39UcvtmTITfAsQ/exec",
+                        {
+                          method: "POST",
+                          body: formData,
+                          mode: "no-cors",
+                          headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                          },
+                        }
+                      )
+                        .then((response) => {
+                          console.log(response);
+                          alert("Message sent successfully!");
+                          form.reset();
+                          closeModal();
+                        })
+                        .catch((error) => {
+                          console.error("Error:", error);
+                          alert("Failed to send message. Please try again.");
+                        })
+                        .finally(() => {
+                          submitBtn.textContent = originalBtnText;
+                          submitBtn.disabled = false;
+                        });
+                    });
 
                   // Add hover effect for close button
                   closeBtn.addEventListener("mouseover", function () {
@@ -2870,17 +2907,6 @@
                     input.addEventListener("blur", function () {
                       this.style.borderColor = "#ddd";
                     });
-                  });
-
-                  // Add hover effect for submit button
-                  const submitBtn = document.querySelector(
-                    'button[type="submit"]'
-                  );
-                  submitBtn.addEventListener("mouseover", function () {
-                    this.style.backgroundColor = "#3a7bc8";
-                  });
-                  submitBtn.addEventListener("mouseout", function () {
-                    this.style.backgroundColor = "#4a90e2";
                   });
                 </script>
               </div>
@@ -2905,8 +2931,7 @@
               data-id="d6b734a"
               data-element_type="container"
             >
-              <div class="e-con-inner"           data-aos="fade-right"
-              >
+              <div class="e-con-inner" data-aos="fade-right">
                 <div
                   class="elementor-element elementor-element-9d53f85 elementor-widget elementor-widget-heading"
                   data-id="9d53f85"
@@ -2926,7 +2951,9 @@
                   data-widget_type="text-editor.default"
                 >
                   <div class="elementor-widget-container">
-                    A results-focused Advertising and marketing agency, we empower businesses to dominate the online world and achieve exceptional growth.
+                    A results-focused Advertising and marketing agency, we
+                    empower businesses to dominate the online world and achieve
+                    exceptional growth.
                   </div>
                 </div>
               </div>
@@ -2983,7 +3010,6 @@
             margin-top: -164px;
           "
           data-aos="fade-right"
-
         >
           <header style="margin-bottom: 40px; padding-top: 20px">
             <h1
@@ -3007,7 +3033,13 @@
                   max-width: 100%;
                 "
               >
-              Adsego quickly established itself as a premier digital marketing agency based in Kerala, India. Over the last seven years, we’ve built a strong presence in the digital landscape, collaborating with clients across the UK, US, and UAE. Our journey began with a small but passionate team, and today, we stand as a leading force in digital advertising with a proven track record of success.
+                Adsego quickly established itself as a premier digital marketing
+                agency based in Kerala, India. Over the last seven years, we’ve
+                built a strong presence in the digital landscape, collaborating
+                with clients across the UK, US, and UAE. Our journey began with
+                a small but passionate team, and today, we stand as a leading
+                force in digital advertising with a proven track record of
+                success.
               </p>
 
               <p
@@ -3017,7 +3049,12 @@
                   max-width: 100%;
                 "
               >
-              With an adept team of marketing professionals, designers, analysts, and developers, we specialize in creating tailored strategies that not only drive growth but also ensure sustained success for our clients. Whether you’re a startup or an established brand, We offers a comprehensive range of digital solutions that meet your unique business needs. 
+                With an adept team of marketing professionals, designers,
+                analysts, and developers, we specialize in creating tailored
+                strategies that not only drive growth but also ensure sustained
+                success for our clients. Whether you’re a startup or an
+                established brand, We offers a comprehensive range of digital
+                solutions that meet your unique business needs.
               </p>
 
               <p
@@ -3027,10 +3064,9 @@
                   max-width: 100%;
                 "
               >
-                <span style="color: #ffff; font-weight: 500"
-                  > We Don’t Just Market – We Transform.
-                  </span
-                >
+                <span style="color: #ffff; font-weight: 500">
+                  We Don’t Just Market – We Transform.
+                </span>
               </p>
 
               <p
@@ -3040,7 +3076,12 @@
                   max-width: 100%;
                 "
               >
-              With a combined expertise of over a decade in digital marketing, our team is equipped with the latest tools, technologies, and skills to deliver results-driven strategies. From SEO and social media marketing to branding and conversion optimization, our tailored approach has helped countless clients across the globe achieve measurable success.
+                With a combined expertise of over a decade in digital marketing,
+                our team is equipped with the latest tools, technologies, and
+                skills to deliver results-driven strategies. From SEO and social
+                media marketing to branding and conversion optimization, our
+                tailored approach has helped countless clients across the globe
+                achieve measurable success.
               </p>
               <p
                 style="
@@ -3049,9 +3090,11 @@
                   max-width: 100%;
                 "
               >
-              Based in Kerala, India, Adsego is proud to have worked with renowned clients across the UK, US, and UAE, delivering outstanding digital marketing services that set new standards for excellence. 
+                Based in Kerala, India, Adsego is proud to have worked with
+                renowned clients across the UK, US, and UAE, delivering
+                outstanding digital marketing services that set new standards
+                for excellence.
               </p>
-
             </section>
 
             <section style="margin-top: 60px">
@@ -3063,7 +3106,7 @@
                   max-width: 100%;
                 "
               >
-              WE ARE MARKETERS. STRATEGISTS. ANALYSTS AND DEVELOPERS COMBINED.
+                WE ARE MARKETERS. STRATEGISTS. ANALYSTS AND DEVELOPERS COMBINED.
               </p>
 
               <p
@@ -3074,7 +3117,7 @@
                   max-width: 100%;
                 "
               >
-              WE ARE ADSEGO
+                WE ARE ADSEGO
               </p>
             </section>
           </main>
@@ -3084,7 +3127,6 @@
           data-id="d2cbfc9"
           data-element_type="container"
           data-aos="fade-right"
-
         >
           <div class="e-con-inner">
             <div
@@ -3214,7 +3256,7 @@
                     class="elementor-element elementor-element-6080319 e-con-full e-flex e-con e-child"
                     data-id="6080319"
                     data-element_type="container"
-                    >
+                  >
                     <div
                       class="elementor-element elementor-element-832b32d elementor-widget elementor-widget-jkit_fun_fact"
                       data-id="832b32d"
@@ -3261,7 +3303,6 @@
             gap: 40px;
             box-sizing: border-box;
           "
-          
         >
           <div
             style="
@@ -3295,13 +3336,11 @@
                   padding: 1rem;
                 "
                 data-aos="fade-right"
-
               />
             </div>
 
             <!-- Right side content -->
-            <div style="flex: 1; min-width: 300px"           data-aos="fade-right"
-            >
+            <div style="flex: 1; min-width: 300px" data-aos="fade-right">
               <h2
                 style="
                   font-size: clamp(24px, 4vw, 32px);
@@ -3480,7 +3519,6 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
               "
             >
               <img
@@ -3496,7 +3534,6 @@
                   padding: 1rem;
                 "
                 data-aos="fade-right"
-
               />
             </div>
           </div>
@@ -3935,7 +3972,7 @@
           data-element_type="container"
           data-settings='{"background_background":"gradient"}'
           data-aos="fade-right"
-          >
+        >
           <div class="e-con-inner">
             <div
               class="elementor-element elementor-element-a604f8b e-con-full e-flex e-con e-child"
@@ -4031,7 +4068,8 @@
                               </div>
                             </div>
                             <span class="title"
-                              >What makes you the best digital-driven success team?</span
+                              >What makes you the best digital-driven success
+                              team?</span
                             >
                           </a>
                         </div>
@@ -4041,7 +4079,14 @@
                           style="display: block"
                         >
                           <div class="card-body">
-                            We are driven by a relentless focus on delivering results that matter. Our team of experts combines creativity, cutting-edge technology, and data-driven strategies to ensure your brand achieves its full potential online. From crafting tailored digital strategies to executing campaigns that engage and convert, we’re committed to driving real success for your business.
+                            We are driven by a relentless focus on delivering
+                            results that matter. Our team of experts combines
+                            creativity, cutting-edge technology, and data-driven
+                            strategies to ensure your brand achieves its full
+                            potential online. From crafting tailored digital
+                            strategies to executing campaigns that engage and
+                            convert, we’re committed to driving real success for
+                            your business.
                           </div>
                         </div>
                       </div>
@@ -4081,7 +4126,8 @@
                               </div>
                             </div>
                             <span class="title"
-                              >How do you ensure the highest quality video ads for my brand?</span
+                              >How do you ensure the highest quality video ads
+                              for my brand?</span
                             >
                           </a>
                         </div>
@@ -4091,7 +4137,13 @@
                           style="display: none"
                         >
                           <div class="card-body">
-                            Our video production team uses state-of-the-art equipment and advanced editing techniques to create video ads that stand out. We focus on storytelling, high-definition visuals, and compelling calls to action to ensure your message resonates with your target audience. Every video ad is carefully crafted to maximize impact and drive results.
+                            Our video production team uses state-of-the-art
+                            equipment and advanced editing techniques to create
+                            video ads that stand out. We focus on storytelling,
+                            high-definition visuals, and compelling calls to
+                            action to ensure your message resonates with your
+                            target audience. Every video ad is carefully crafted
+                            to maximize impact and drive results.
                           </div>
                         </div>
                       </div>
@@ -4131,7 +4183,8 @@
                               </div>
                             </div>
                             <span class="title"
-                              >How many leads can I expect per month from your services?</span
+                              >How many leads can I expect per month from your
+                              services?</span
                             >
                           </a>
                         </div>
@@ -4141,7 +4194,13 @@
                           style="display: none"
                         >
                           <div class="card-body">
-                            We tailor our lead generation strategies to your business goals, industry, and target audience. By leveraging the latest digital marketing tactics and optimizing every campaign, we aim to provide you with a consistent stream of high-quality leads each month. We work closely with you to set realistic targets and achieve measurable results.
+                            We tailor our lead generation strategies to your
+                            business goals, industry, and target audience. By
+                            leveraging the latest digital marketing tactics and
+                            optimizing every campaign, we aim to provide you
+                            with a consistent stream of high-quality leads each
+                            month. We work closely with you to set realistic
+                            targets and achieve measurable results.
                           </div>
                         </div>
                       </div>
@@ -4181,7 +4240,8 @@
                               </div>
                             </div>
                             <span class="title"
-                              >What makes your social media designs and video editing stand out?</span
+                              >What makes your social media designs and video
+                              editing stand out?</span
                             >
                           </a>
                         </div>
@@ -4191,7 +4251,16 @@
                           style="display: none"
                         >
                           <div class="card-body">
-                            We specialize in creating visually captivating social media designs and video content that not only grabs attention but also drives engagement. Using the latest techniques in graphic design and video editing, we ensure every piece of content is tailored to reflect your brand’s identity and resonate with your audience. From stunning visuals to seamless animations, we create high-quality, share-worthy content that elevates your social media presence.
+                            We specialize in creating visually captivating
+                            social media designs and video content that not only
+                            grabs attention but also drives engagement. Using
+                            the latest techniques in graphic design and video
+                            editing, we ensure every piece of content is
+                            tailored to reflect your brand’s identity and
+                            resonate with your audience. From stunning visuals
+                            to seamless animations, we create high-quality,
+                            share-worthy content that elevates your social media
+                            presence.
                           </div>
                         </div>
                       </div>
@@ -4231,7 +4300,8 @@
                               </div>
                             </div>
                             <span class="title"
-                              >What makes your approach to digital marketing unique?</span
+                              >What makes your approach to digital marketing
+                              unique?</span
                             >
                           </a>
                         </div>
@@ -4241,8 +4311,14 @@
                           style="display: none"
                         >
                           <div class="card-body">
-                            Our approach is unique because we combine creativity with data-driven insights to craft personalized marketing strategies. We focus on understanding your business goals and challenges, then build custom campaigns that are designed for maximum effectiveness. Our team stays ahead of digital trends, ensuring that your brand always remains competitive in a rapidly evolving market.
-
+                            Our approach is unique because we combine creativity
+                            with data-driven insights to craft personalized
+                            marketing strategies. We focus on understanding your
+                            business goals and challenges, then build custom
+                            campaigns that are designed for maximum
+                            effectiveness. Our team stays ahead of digital
+                            trends, ensuring that your brand always remains
+                            competitive in a rapidly evolving market.
                           </div>
                         </div>
                       </div>
@@ -5404,8 +5480,7 @@
                                 </span>
                                 <span class="elementor-icon-list-text"
                                   >adsegofuture@gmail.com
-                                  </span
-                                >
+                                </span>
                               </a>
                             </li>
                             <li class="elementor-icon-list-item">
@@ -5424,6 +5499,10 @@
                                 </span>
                                 <span class="elementor-icon-list-text"
                                   >+91 9074955688</span
+                                >
+                                <br />
+                                <span class="elementor-icon-list-text" style="margin-left: 21px;"
+                                  >+91 8078246232</span
                                 >
                               </a>
                             </li>
@@ -5462,45 +5541,45 @@
                         data-element_type="widget"
                         data-widget_type="icon-list.default"
                       >
-                      <div class="elementor-widget-container">
-                        <ul class="elementor-icon-list-items">
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Search Engine Optimization</span
-                              >
-                            </a>
-                          </li>
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Video Ads Production</span
-                              >
-                            </a>
-                          </li>
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Website Development</span
-                              >
-                            </a>
-                          </li>
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Brand Strategy</span
-                              >
-                            </a>
-                          </li>
-                          <li class="elementor-icon-list-item">
-                            <a href="/project/services/index.html">
-                              <span class="elementor-icon-list-text"
-                                >Social Media Marketing</span
-                              >
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+                        <div class="elementor-widget-container">
+                          <ul class="elementor-icon-list-items">
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Search Engine Optimization</span
+                                >
+                              </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Video Ads Production</span
+                                >
+                              </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Website Development</span
+                                >
+                              </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Brand Strategy</span
+                                >
+                              </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                              <a href="/project/services/index.html">
+                                <span class="elementor-icon-list-text"
+                                  >Social Media Marketing</span
+                                >
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                     <div
@@ -5531,7 +5610,7 @@
                         <div class="elementor-widget-container">
                           <ul class="elementor-icon-list-items">
                             <li class="elementor-icon-list-item">
-                              <a href="#">
+                              <a href="https://www.facebook.com/profile.php?id=61560336006825">
                                 <span class="elementor-icon-list-icon">
                                   <i
                                     aria-hidden="true"
@@ -5544,7 +5623,7 @@
                               </a>
                             </li>
                             <li class="elementor-icon-list-item">
-                              <a href="#">
+                              <a href="https://www.instagram.com/adsegofuture/">
                                 <span class="elementor-icon-list-icon">
                                   <i
                                     aria-hidden="true"
@@ -5557,28 +5636,15 @@
                               </a>
                             </li>
                             <li class="elementor-icon-list-item">
-                              <a href="#">
+                              <a href="https://www.linkedin.com/company/adsego-future/posts/?feedView=all">
                                 <span class="elementor-icon-list-icon">
                                   <i
                                     aria-hidden="true"
-                                    class="jki jki-twitter"
+                                    class="jki jki-linkedin"
                                   ></i>
                                 </span>
                                 <span class="elementor-icon-list-text"
-                                  >Twitter</span
-                                >
-                              </a>
-                            </li>
-                            <li class="elementor-icon-list-item">
-                              <a href="#">
-                                <span class="elementor-icon-list-icon">
-                                  <i
-                                    aria-hidden="true"
-                                    class="jki jki-youtube-v-light"
-                                  ></i>
-                                </span>
-                                <span class="elementor-icon-list-text"
-                                  >Youtube</span
+                                  >LinkedIn</span
                                 >
                               </a>
                             </li>
@@ -5620,9 +5686,7 @@
                     data-id="cded223"
                     data-element_type="widget"
                     data-widget_type="text-editor.default"
-                  >
-
-                  </div>
+                  ></div>
                 </div>
               </div>
             </div>
@@ -5959,11 +6023,11 @@
     ></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: false
-        });
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: false,
+      });
     </script>
   </body>
 
